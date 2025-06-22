@@ -289,7 +289,6 @@ section {
 /* =================================================================== */
 
 .pricing-section {
-  /* FIX: Use the light background for the section to contrast with the white cards */
   background-color: var(--brand-light); 
 }
 
@@ -303,9 +302,9 @@ section {
 .pricing-card {
   display: flex;
   flex-direction: column;
-  /* FIX: Ensure cards use the true white surface color */
   background-color: var(--color-surface); 
-  border: 2px solid transparent; /* Reserve space for the hover border */
+  border: 1px solid var(--color-border); /* Subtle border all the time */
+  border-radius: var(--radius-lg);
   transition: all var(--duration-normal) var(--ease-standard);
 }
 
@@ -325,7 +324,7 @@ section {
 .pricing-card .price {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
-  color: var(--brand-accent); /* Changed from var(--brand-primary) to var(--brand-accent) for orange */
+  color: var(--brand-accent);
   margin-bottom: var(--space-16);
 }
 
@@ -391,19 +390,7 @@ section {
 .pricing-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 20px rgba(74, 85, 104, 0.15);
-}
-
-.featured-card:hover {
-  border: 2px solid var(--brand-accent);
-}
-
-.featured-card:hover .btn--dark {
-    background-color: var(--brand-accent);
-    border-color: var(--brand-accent);
-}
-
-.featured-card:hover .btn--dark:hover {
-    background-color: var(--color-primary-hover);
+    border-color: var(--color-border); /* Keep same subtle border on hover */
 }
 
 /* --- Footer Link --- */
@@ -429,4 +416,3 @@ section {
     grid-template-columns: 1fr;
   }
 }
-  
