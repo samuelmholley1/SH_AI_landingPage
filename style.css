@@ -319,6 +319,7 @@ section {
   color: var(--brand-primary);
   margin-bottom: var(--space-8);
   font-size: var(--font-size-xl);
+  white-space: nowrap; /* Keep headline on one line */
 }
 
 .pricing-card .price {
@@ -382,15 +383,16 @@ section {
   color: var(--brand-white);
 }
 
-.btn--dark:hover {
-  background: #2c4a7e;
-}
-
 /* --- HOVER LOGIC --- */
+/* This handles the card lifting up and getting a shadow */
 .pricing-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 20px rgba(74, 85, 104, 0.15);
-    border-color: var(--color-border); /* Keep same subtle border on hover */
+}
+
+/* When hovering the button on ANY card, make it orange */
+.pricing-card .btn--dark:hover {
+    background-color: var(--brand-accent);
 }
 
 /* --- Footer Link --- */
@@ -412,6 +414,15 @@ section {
 
 /* --- Responsive for Mobile --- */
 @media (max-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
   .pricing-grid {
     grid-template-columns: 1fr;
   }
