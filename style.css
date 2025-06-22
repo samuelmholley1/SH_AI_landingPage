@@ -325,51 +325,11 @@ section {
 .pricing-card .price {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
-  color: var(--brand-primary);
+  color: var(--brand-accent); /* Changed from var(--brand-primary) to var(--brand-accent) for orange */
   margin-bottom: var(--space-16);
 }
 
-.pricing-card .price--accent {
-  color: var(--brand-accent);
-}
-
-.pricing-card p {
-  color: var(--brand-secondary);
-}
-
-.pricing-card h4 {
-  font-size: 1em;
-  font-weight: var(--font-weight-bold);
-  color: var(--brand-primary);
-  margin-top: var(--space-24);
-  margin-bottom: var(--space-12);
-}
-
-.achievements-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 var(--space-24) 0;
-  text-align: left;
-  flex-grow: 1;
-}
-
-.achievements-list li {
-  padding-left: var(--space-24);
-  position: relative;
-  margin-bottom: var(--space-12);
-  color: var(--brand-secondary);
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-.achievements-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  top: 2px;
-  color: var(--brand-accent);
-  font-weight: var(--font-weight-bold);
-}
+/* Remove all the conflicting price color rules below */
 
 /* --- Buttons --- */
 .pricing-card .btn {
@@ -434,4 +394,59 @@ section {
   .pricing-grid {
     grid-template-columns: 1fr;
   }
+}
+}
+
+
+/* --- CORRECTED HOVER LOGIC --- */
+
+/* Base hover for ALL cards */
+.pricing-card:hover {
+    transform: translateY(-8px);
+    /* FIX: Added a more noticeable gray shadow on hover */
+    box-shadow: 0 10px 20px rgba(74, 85, 104, 0.15);
+}
+
+/* FIX: Featured card gets its orange border ONLY on hover */
+.featured-card:hover {
+  border: 2px solid var(--brand-accent);
+}
+
+/* FIX: The button on the featured card turns orange ONLY when the card is hovered */
+.featured-card:hover .btn--dark {
+    background-color: var(--brand-accent);
+    border-color: var(--brand-accent);
+}
+.featured-card:hover .btn--dark:hover {
+    background-color: var(--color-primary-hover); /* Use the existing darker orange on button hover */
+}
+
+
+/* --- Footer Link --- */
+.pricing-footer {
+  text-align: center;
+  margin-top: calc(var(--space-32) * 2);
+}
+
+.pricing-footer p {
+  font-size: var(--font-size-lg);
+}
+
+.pricing-footer a {
+  color: var(--brand-accent);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: underline;
+
+
+
+
+
+
+
+
+
+
+}  }    grid-template-columns: 1fr;  .pricing-grid {@media (max-width: 1024px) {/* --- Responsive for Mobile --- */}  text-underline-offset: 4px;/* Change the price color of the first pricing container to orange */
+.pricing-container:first-child .price {
+    color: #ff6b35; /* Change from blue to orange */
 }
