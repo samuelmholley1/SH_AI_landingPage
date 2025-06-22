@@ -329,7 +329,47 @@ section {
   margin-bottom: var(--space-16);
 }
 
-/* Remove all the conflicting price color rules below */
+.pricing-card .price--accent {
+  color: var(--brand-accent);
+}
+
+.pricing-card p {
+  color: var(--brand-secondary);
+}
+
+.pricing-card h4 {
+  font-size: 1em;
+  font-weight: var(--font-weight-bold);
+  color: var(--brand-primary);
+  margin-top: var(--space-24);
+  margin-bottom: var(--space-12);
+}
+
+.achievements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-24) 0;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.achievements-list li {
+  padding-left: var(--space-24);
+  position: relative;
+  margin-bottom: var(--space-12);
+  color: var(--brand-secondary);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.achievements-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: var(--brand-accent);
+  font-weight: var(--font-weight-bold);
+}
 
 /* --- Buttons --- */
 .pricing-card .btn {
@@ -342,35 +382,29 @@ section {
   background: var(--brand-primary);
   color: var(--brand-white);
 }
-/* This hover effect is for the button itself */
+
 .btn--dark:hover {
-  background: #2c4a7e; /* A slightly lighter shade of the primary for hover */
+  background: #2c4a7e;
 }
 
-
-/* --- CORRECTED HOVER LOGIC --- */
-
-/* Base hover for ALL cards */
+/* --- HOVER LOGIC --- */
 .pricing-card:hover {
     transform: translateY(-8px);
-    /* FIX: Added a more noticeable gray shadow on hover */
     box-shadow: 0 10px 20px rgba(74, 85, 104, 0.15);
 }
 
-/* FIX: Featured card gets its orange border ONLY on hover */
 .featured-card:hover {
   border: 2px solid var(--brand-accent);
 }
 
-/* FIX: The button on the featured card turns orange ONLY when the card is hovered */
 .featured-card:hover .btn--dark {
     background-color: var(--brand-accent);
     border-color: var(--brand-accent);
 }
-.featured-card:hover .btn--dark:hover {
-    background-color: var(--color-primary-hover); /* Use the existing darker orange on button hover */
-}
 
+.featured-card:hover .btn--dark:hover {
+    background-color: var(--color-primary-hover);
+}
 
 /* --- Footer Link --- */
 .pricing-footer {
@@ -395,40 +429,6 @@ section {
     grid-template-columns: 1fr;
   }
 }
-}
-
-
-/* --- CORRECTED HOVER LOGIC --- */
-
-/* Base hover for ALL cards */
-.pricing-card:hover {
-    transform: translateY(-8px);
-    /* FIX: Added a more noticeable gray shadow on hover */
-    box-shadow: 0 10px 20px rgba(74, 85, 104, 0.15);
-}
-
-/* FIX: Featured card gets its orange border ONLY on hover */
-.featured-card:hover {
-  border: 2px solid var(--brand-accent);
-}
-
-/* FIX: The button on the featured card turns orange ONLY when the card is hovered */
-.featured-card:hover .btn--dark {
-    background-color: var(--brand-accent);
-    border-color: var(--brand-accent);
-}
-.featured-card:hover .btn--dark:hover {
-    background-color: var(--color-primary-hover); /* Use the existing darker orange on button hover */
-}
-
-
-/* --- Footer Link --- */
-.pricing-footer {
-  text-align: center;
-  margin-top: calc(var(--space-32) * 2);
-}
-
-.pricing-footer p {
   font-size: var(--font-size-lg);
 }
 
