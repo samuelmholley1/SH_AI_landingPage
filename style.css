@@ -429,24 +429,4 @@ section {
     grid-template-columns: 1fr;
   }
 }
-  font-size: var(--font-size-lg);
-}
-
-.pricing-footer a {
-  color: var(--brand-accent);
-  font-weight: var(--font-weight-semibold);
-  text-decoration: underline;
-
-
-
-
-
-
-
-
-
-
-}  }    grid-template-columns: 1fr;  .pricing-grid {@media (max-width: 1024px) {/* --- Responsive for Mobile --- */}  text-underline-offset: 4px;/* Change the price color of the first pricing container to orange */
-.pricing-container:first-child .price {
-    color: #ff6b35; /* Change from blue to orange */
-}
+  
