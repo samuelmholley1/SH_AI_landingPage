@@ -156,7 +156,7 @@ section {
   transition: all var(--duration-normal);
 }
 
-/* Hero Section */
+/* Hero Section - Enhanced for more visual impact */
 .hero {
   background-color: var(--brand-white);
   position: relative;
@@ -168,35 +168,41 @@ section {
   overflow: hidden;
 }
 
-/* Floating elements */
-.floating-element {
-  position: absolute;
-  z-index: 1;
-}
-
-/* Hero background elements */
+/* Add a subtle grid pattern overlay to suggest AI precision + human design */
 .hero::before {
   content: '';
   position: absolute;
-  top: -5%;
-  right: -5%;
-  width: 40%;
-  height: 60%;
-  background: radial-gradient(circle at center, rgba(252, 97, 18, 0.08) 0%, rgba(252, 97, 18, 0) 70%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(248, 250, 252, 0.2) 1px, transparent 1px), 
+                    linear-gradient(90deg, rgba(248, 250, 252, 0.2) 1px, transparent 1px);
+  background-size: 40px 40px;
   z-index: 0;
-  border-radius: 50%;
 }
 
+/* More impactful gradient background elements */
 .hero::after {
   content: '';
   position: absolute;
-  bottom: -10%;
-  left: -10%;
-  width: 50%;
-  height: 70%;
-  background: radial-gradient(circle at center, rgba(26, 54, 93, 0.06) 0%, rgba(26, 54, 93, 0) 70%);
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 80% 20%, rgba(252, 97, 18, 0.08) 0%, rgba(252, 97, 18, 0) 50%),
+    radial-gradient(circle at 20% 80%, rgba(26, 54, 93, 0.08) 0%, rgba(26, 54, 93, 0) 50%);
   z-index: 0;
-  border-radius: 50%;
+}
+
+/* Floating elements - position absolutely but animated conditionally */
+.floating-element {
+  position: absolute;
+  z-index: 1;
+  /* All elements visible by default with no animation */
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero-content { 
@@ -204,33 +210,45 @@ section {
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  /* No default animation */
 }
 
+/* Enhanced typography for more punch */
 .hero-title {
   margin-bottom: var(--space-24);
   position: relative;
   display: inline-block;
+  letter-spacing: -0.02em; /* Tighter letter spacing for headings looks more premium */
 }
 
+/* Make the title accent more noticeable */
 .hero-title::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: -14px;
   left: 50%;
   transform: translateX(-50%);
-  height: 3px;
-  width: 80px;
+  height: 4px;
+  width: 100px;
   background: var(--brand-accent);
-  border-radius: 3px;
+  border-radius: 4px;
+}
+
+/* Add accent color to part of the headline */
+.hero-title .accent {
+  color: var(--brand-accent);
+  position: relative;
+  display: inline-block;
 }
 
 .hero-subtitle {
   font-size: var(--font-size-xl);
   color: var(--brand-secondary);
   margin-bottom: var(--space-32);
-  max-width: 90%;
+  max-width: 85%; /* Slightly narrower for better readability */
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.5; /* Slightly increased line height for better readability */
 }
 
 .hero-cta {
@@ -238,45 +256,68 @@ section {
   position: relative;
 }
 
-.hero-cta::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -30px;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 2px;
-  background-color: var(--color-primary);
-  opacity: 0.7;
-}
-
-.hero-cta::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: -30px;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 2px;
-  background-color: var(--color-primary);
-  opacity: 0.7;
-}
-
 /* Enhanced button styles */
 .btn--lg {
   padding: var(--space-16) var(--space-32);
   font-size: var(--font-size-lg);
   position: relative;
-  overflow: hidden;
+  letter-spacing: 0.02em; /* Slightly wider letter spacing for buttons */
 }
 
 .btn--primary {
-  box-shadow: 0 5px 15px rgba(252, 97, 18, 0.3);
+  box-shadow: 0 6px 20px rgba(252, 97, 18, 0.25);
+  border: 1px solid rgba(252, 97, 18, 0.1);
 }
 
-.btn--primary:hover {
-  box-shadow: 0 7px 20px rgba(252, 97, 18, 0.4);
-  transform: translateY(-2px);
+/* Proper animation-based approach to reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  /* Only apply animations for users who haven't requested reduced motion */
+  
+  .floating-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+  }
+  
+  .hero-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+  }
+  
+  .btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(252, 97, 18, 0.35);
+  }
+  
+  .pricing-card:hover,
+  .card:hover {
+    transform: translateY(-8px);
+  }
+  
+  .hero-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 2px;
+    background-color: var(--color-primary);
+    opacity: 0.7;
+  }
+
+  .hero-cta::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 2px;
+    background-color: var(--color-primary);
+    opacity: 0.7;
+  }
 }
 
 /* Section Header */

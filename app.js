@@ -113,42 +113,42 @@ function initializeActiveNavigation() {
  */
 function initializeFloatingElements() {
     const floatingElements = document.querySelectorAll('.floating-element');
+    const heroContent = document.querySelector('.hero-content');
     
-    // Check for reduced motion preference
+    // Check if browser supports the API and user hasn't set reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const allowAnimations = !prefersReducedMotion;
     
-    floatingElements.forEach((el, index) => {
-        // Set initial opacity and transform
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'all 0.8s ease';
-        
-        // Animate in with delay based on index
-        setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-            
-            // Add subtle floating animation after entrance, but respect reduced motion preferences
-            if (!prefersReducedMotion) {
+    if (allowAnimations) {
+        // Animate in floating elements with delay
+        floatingElements.forEach((el, index) => {
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+                
+                // Add subtle floating animation
                 el.animate([
-                    { transform: 'translate(0, 0)' },
-                    { transform: 'translate(0, -8px)' },
-                    { transform: 'translate(0, 0)' }
+                    { transform: 'translate(0, 0) rotate(0deg)' },
+                    { transform: 'translate(0, -8px) rotate(2deg)' },
+                    { transform: 'translate(0, 0) rotate(0deg)' }
                 ], {
-                    duration: 3000 + (index * 500), // Staggered durations
+                    duration: 4000 + (index * 500),
                     iterations: Infinity,
                     direction: 'alternate',
                     easing: 'ease-in-out'
                 });
-            }
-        }, 300 + (index * 150));
-    });
-    
-    // Animate hero content entrance
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        heroContent.style.opacity = '0';
-        heroContent.style.transform = 'translateY(20px)';
+            }, 300 + (index * 150));
+        });
+        
+        // Animate in hero content
+        if (heroContent) {
+            setTimeout(() => {
+                heroContent.style.opacity = '1';
+                heroContent.style.transform = 'translateY(0)';
+            }, 100);
+        }
+    }
+}
         heroContent.style.transition = 'all 0.8s ease';
         
         setTimeout(() => {
