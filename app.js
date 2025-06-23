@@ -142,6 +142,8 @@ function initializeFloatingElements() {
         
         // Animate in hero content
         if (heroContent) {
+            heroContent.style.transition = 'all 0.8s ease';
+            
             setTimeout(() => {
                 heroContent.style.opacity = '1';
                 heroContent.style.transform = 'translateY(0)';
@@ -149,8 +151,6 @@ function initializeFloatingElements() {
         }
     }
 }
-        heroContent.style.transition = 'all 0.8s ease';
-        
         setTimeout(() => {
             heroContent.style.opacity = '1';
             heroContent.style.transform = 'translateY(0)';
