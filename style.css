@@ -319,8 +319,6 @@ section {
   color: var(--brand-primary);
   margin-bottom: var(--space-8);
   font-size: var(--font-size-xl);
-  white-space: nowrap; /* Prevent wrapping */
-  overflow: hidden; /* Hide overflow before JS scales the text */
 }
 
 .pricing-card .price {
@@ -417,5 +415,7 @@ section {
 @media (max-width: 1024px) {
   .pricing-grid {
     grid-template-columns: 1fr;
+  }
+}
   }
 }
