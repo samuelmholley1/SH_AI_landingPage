@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Active navigation highlighting
     initializeActiveNavigation();
+    
+    // Initialize floating elements animation
+    initializeFloatingElements();
 });
 
 /**
@@ -104,47 +107,53 @@ function initializeActiveNavigation() {
         observer.observe(section);
     });
 }
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-}
 
 /**
- * Scales pricing card headlines to fit on one line without wrapping.
- * All headlines are scaled to the same size to accommodate the longest one.
+ * Initializes subtle floating animation for hero elements
  */
-function scalePricingHeadlines() {
-    const headlines = document.querySelectorAll('.pricing-card h3');
-    if (!headlines.length) return;
-
-    // Reset styles to get accurate measurements
-    headlines.forEach(h3 => {
-        h3.style.fontSize = ''; // Use CSS-defined font size
-    });
-
-    // Allow the browser to render the reset styles before measuring
-    requestAnimationFrame(() => {
-        let maxScaleRatio = 1;
-
-        // Find the largest scale ratio needed
-        headlines.forEach(h3 => {
-            // Check if the text is wider than its container
-            if (h3.scrollWidth > h3.clientWidth) {
-                const ratio = h3.scrollWidth / h3.clientWidth;
-                if (ratio > maxScaleRatio) {
-                    maxScaleRatio = ratio;
-                }
-            }
-        });
-
-        // If scaling is needed, apply it to all headlines
-        if (maxScaleRatio > 1) {
-            const currentFontSize = parseFloat(getComputedStyle(headlines[0]).fontSize);
-            const newFontSize = currentFontSize / maxScaleRatio;
+function initializeFloatingElements() {
+    const floatingElements = document.querySelectorAll('.floating-element');
+    
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    floatingElements.forEach((el, index) => {
+        // Set initial opacity and transform
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.8s ease';
+        
+        // Animate in with delay based on index
+        setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
             
-            headlines.forEach(h3 => {
-                h3.style.fontSize = `${newFontSize}px`;
-            });
-        }
+            // Add subtle floating animation after entrance, but respect reduced motion preferences
+            if (!prefersReducedMotion) {
+                el.animate([
+                    { transform: 'translate(0, 0)' },
+                    { transform: 'translate(0, -8px)' },
+                    { transform: 'translate(0, 0)' }
+                ], {
+                    duration: 3000 + (index * 500), // Staggered durations
+                    iterations: Infinity,
+                    direction: 'alternate',
+                    easing: 'ease-in-out'
+                });
+            }
+        }, 300 + (index * 150));
     });
+    
+    // Animate hero content entrance
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        heroContent.style.opacity = '0';
+        heroContent.style.transform = 'translateY(20px)';
+        heroContent.style.transition = 'all 0.8s ease';
+        
+        setTimeout(() => {
+            heroContent.style.opacity = '1';
+            heroContent.style.transform = 'translateY(0)';
+        }, 100);
+    }
 }
