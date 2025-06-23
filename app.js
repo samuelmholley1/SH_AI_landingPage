@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Active navigation highlighting
     initializeActiveNavigation();
+    
+    // Scale pricing headlines to fit
+    scalePricingHeadlines();
+    window.addEventListener('resize', scalePricingHeadlines);
 });
 
 /**
@@ -102,5 +106,45 @@ function initializeActiveNavigation() {
 
     sections.forEach(section => {
         observer.observe(section);
+    });
+}
+
+/**
+ * Scales pricing card headlines to fit on one line without wrapping.
+ * All headlines are scaled to the same size to accommodate the longest one.
+ */
+function scalePricingHeadlines() {
+    const headlines = document.querySelectorAll('.pricing-card h3');
+    if (!headlines.length) return;
+
+    // Reset styles to get accurate measurements
+    headlines.forEach(h3 => {
+        h3.style.fontSize = ''; // Use CSS-defined font size
+    });
+
+    // Allow the browser to render the reset styles before measuring
+    requestAnimationFrame(() => {
+        let maxScaleRatio = 1;
+
+        // Find the largest scale ratio needed
+        headlines.forEach(h3 => {
+            // Check if the text is wider than its container
+            if (h3.scrollWidth > h3.clientWidth) {
+                const ratio = h3.scrollWidth / h3.clientWidth;
+                if (ratio > maxScaleRatio) {
+                    maxScaleRatio = ratio;
+                }
+            }
+        });
+
+        // If scaling is needed, apply it to all headlines
+        if (maxScaleRatio > 1) {
+            const currentFontSize = parseFloat(getComputedStyle(headlines[0]).fontSize);
+            const newFontSize = currentFontSize / maxScaleRatio;
+            
+            headlines.forEach(h3 => {
+                h3.style.fontSize = `${newFontSize}px`;
+            });
+        }
     });
 }
