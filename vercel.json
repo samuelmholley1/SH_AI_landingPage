@@ -11,6 +11,10 @@
     {
       "source": "/logo.png",
       "destination": "/logo.png"
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/favicon.ico"
     }
   ]
 }
