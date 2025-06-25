@@ -29,38 +29,29 @@
 
         <!-- The new, high-quality Calendly embed -->
         <div class="calendly-placeholder">
-            <!-- v5: High-Fidelity Loading Skeleton -->
+            <!-- v6: High-Fidelity Loading Skeleton with SVG Calendar Placeholder -->
             <div class="skeleton-loader" aria-live="polite" aria-busy="true">
-                <!-- Month/Year Header -->
-                <div class="skeleton-header">
-                    <div class="skeleton-shape skeleton-line" style="width: 35%; height: 28px;"></div>
-                </div>
-                
-                <!-- Month Navigation -->
-                <div class="skeleton-month-nav">
-                    <div class="skeleton-shape skeleton-nav-arrow" aria-hidden="true"></div>
-                    <div class="skeleton-shape skeleton-line" style="width: 25%; height: 20px;"></div>
-                    <div class="skeleton-shape skeleton-nav-arrow" aria-hidden="true"></div>
-                </div>
-
-                <!-- Days of the Week -->
-                <div class="skeleton-weekdays">
-                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
-                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
-                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
-                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
-                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
-                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
-                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
-                </div>
-
-                <!-- Calendar Grid (Now populated by script at the end of the body) -->
-                <div class="skeleton-calendar-grid">
-                </div>
-                
-                <!-- Time Zone Selector -->
-                <div class="skeleton-footer">
-                    <div class="skeleton-shape skeleton-line" style="width: 45%; height: 20px;"></div>
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%;">
+                    <!-- SVG Calendar Placeholder -->
+                    <svg width="220" height="180" viewBox="0 0 220 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="margin-bottom: 32px;">
+                        <rect x="10" y="30" width="200" height="140" rx="16" fill="#eaf0f6"/>
+                        <rect x="10" y="30" width="200" height="24" rx="8" fill="#FC6112" fill-opacity="0.18"/>
+                        <rect x="30" y="60" width="32" height="32" rx="6" fill="#fff"/>
+                        <rect x="70" y="60" width="32" height="32" rx="6" fill="#fff"/>
+                        <rect x="110" y="60" width="32" height="32" rx="6" fill="#fff"/>
+                        <rect x="150" y="60" width="32" height="32" rx="6" fill="#fff"/>
+                        <rect x="30" y="100" width="32" height="32" rx="6" fill="#fff"/>
+                        <rect x="70" y="100" width="32" height="32" rx="6" fill="#fff"/>
+                        <rect x="110" y="100" width="32" height="32" rx="6" fill="#fff"/>
+                        <rect x="150" y="100" width="32" height="32" rx="6" fill="#fff"/>
+                        <rect x="30" y="140" width="32" height="16" rx="6" fill="#fff"/>
+                        <rect x="70" y="140" width="32" height="16" rx="6" fill="#fff"/>
+                        <rect x="110" y="140" width="32" height="16" rx="6" fill="#fff"/>
+                        <rect x="150" y="140" width="32" height="16" rx="6" fill="#fff"/>
+                        <rect x="30" y="30" width="152" height="8" rx="4" fill="#fff" fill-opacity="0.7"/>
+                        <rect x="30" y="40" width="80" height="6" rx="3" fill="#fff" fill-opacity="0.5"/>
+                    </svg>
+                    <div style="font-size: 1.2rem; color: #4A5568; opacity: 0.8;">Loading calendar...</div>
                 </div>
             </div>
 
