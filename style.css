@@ -696,7 +696,7 @@ section {
 }
 
 /* =================================================================
-   HIGH-QUALITY SCHEDULING PAGE & CALENDLY EMBED STYLES (v2 - Sleek)
+   HIGH-QUALITY SCHEDULING PAGE & CALENDLY EMBED STYLES (v3 - Polished)
    ================================================================= */
 
 /* Main container for pages like /audit and /schedule */
@@ -706,21 +706,19 @@ section {
     margin: 0 auto;
 }
 
-/* The loading skeleton placeholder for the Calendly widget */
+/* The placeholder container for both the skeleton and the widget */
 .calendly-placeholder {
     position: relative;
     width: 100%;
-    height: 750px; /* A fixed height prevents page jump */
+    height: 750px;
     border-radius: 16px;
-    overflow: hidden; /* This is CRUCIAL for the shimmer effect */
-    background-color: var(--color-surface); /* Base color for the skeleton */
+    overflow: hidden;
+    background-color: var(--color-surface);
     box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.05);
     padding: 24px;
-    display: flex; /* Using flex to structure the skeleton */
-    gap: 24px;
 }
 
-/* The actual Calendly widget that will be placed inside the placeholder */
+/* The actual Calendly widget */
 .calendly-placeholder .calendly-inline-widget {
     position: absolute;
     top: 0;
@@ -728,18 +726,41 @@ section {
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: opacity 0.5s 0.1s ease-in-out; /* Slight delay for smoother feel */
+    transition: opacity 0.5s 0.1s ease-in-out;
+    z-index: 2; /* Ensure it appears above the skeleton */
 }
 
+/* Make the widget visible when it's loaded */
 .calendly-placeholder .calendly-inline-widget[data-loaded="true"] {
     opacity: 1;
 }
 
-/* Base styles for all skeleton shape elements */
+/* --- The Sleek Skeleton Loader --- */
+.skeleton-loader {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    height: 100%;
+    position: absolute; /* Keep it inside the placeholder bounds */
+    top: 0;
+    left: 0;
+    padding: 24px; /* Match placeholder padding */
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+/* Fade out the skeleton when the 'data-hidden' attribute is added by JS */
+.skeleton-loader[data-hidden="true"] {
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction during fade-out */
+}
+
+/* Base styles for all shimmering shapes */
 .skeleton-shape {
-    background-color: #e2e8f0; /* A neutral, light gray */
+    background-color: #e2e8f0;
     position: relative;
-    overflow: hidden; /* Each shape needs to hide the overflow of the shimmer */
+    overflow: hidden;
 }
 
 /* The shimmer animation effect */
@@ -759,13 +780,12 @@ section {
     animation: shimmer 1.75s infinite cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
-/* The Shimmer Animation Keyframes */
 @keyframes shimmer {
     from { transform: translateX(-100%); }
     to { transform: translateX(100%); }
 }
 
-/* --- Skeleton Structure --- */
+/* --- Skeleton Structure & Spacing --- */
 .skeleton-main {
     flex-grow: 1;
     display: flex;
@@ -774,18 +794,18 @@ section {
 }
 
 .skeleton-sidebar {
-    width: 200px; /* Approximate width of Calendly's time list */
+    width: 200px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-/* --- Skeleton Details --- */
 .skeleton-header {
     display: flex;
     align-items: center;
     gap: 16px;
+    flex-shrink: 0; /* Prevent header from shrinking */
 }
 
 .skeleton-avatar {
@@ -798,31 +818,35 @@ section {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
 }
 
 .skeleton-line {
     height: 16px;
     border-radius: 4px;
 }
-.skeleton-line.short { width: 60%; }
-.skeleton-line.long { width: 90%; }
 
+/* This container now correctly expands to fill space */
+.skeleton-calendar {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
 
+/* The grid fills the available space within the calendar area */
 .skeleton-calendar-grid {
+    flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: minmax(40px, 1fr); /* Ensure rows are responsive */
     gap: 8px;
-    margin-top: 16px;
 }
 
 .skeleton-date-box {
-    width: 100%;
-    height: 50px; /* Approximate height of a date box */
     border-radius: 6px;
 }
 
 .skeleton-timeslot {
-    height: 40px;
-    border-radius: 6px;
+    height: 44px;
+    border-radius: 8px;
 }
