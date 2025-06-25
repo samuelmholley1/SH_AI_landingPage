@@ -630,3 +630,67 @@ section {
     grid-template-columns: 1fr;
   }
 }
+
+/* Brand Banner Styles */
+.brand-banner {
+  background: linear-gradient(90deg, #FC6112 0%, #FFB36A 100%);
+  color: #fff;
+  padding: 48px 0 40px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px 0 rgba(252,97,18,0.10);
+  z-index: 2;
+}
+.brand-banner .banner-content {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.brand-banner h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(252,97,18,0.12);
+}
+.brand-banner .banner-flash {
+  background: linear-gradient(90deg, #fff 0%, #FFB36A 100%);
+  color: #FC6112;
+  padding: 2px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  margin-left: 8px;
+  box-shadow: 0 2px 12px 0 rgba(255,179,106,0.10);
+  display: inline-block;
+  animation: flashPulse 2.5s infinite cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes flashPulse {
+  0%, 100% { background: linear-gradient(90deg, #fff 0%, #FFB36A 100%); }
+  50% { background: linear-gradient(90deg, #FFB36A 0%, #fff 100%); }
+}
+.brand-banner p {
+  font-size: 1.18rem;
+  font-weight: 500;
+  margin-bottom: 18px;
+  color: #fff;
+  opacity: 0.95;
+}
+.brand-banner .banner-svg {
+  margin-top: 8px;
+  filter: drop-shadow(0 2px 12px #FC6112aa);
+}
+
+@media (max-width: 600px) {
+  .brand-banner {
+    padding: 32px 0 24px 0;
+  }
+  .brand-banner h2 {
+    font-size: 1.3rem;
+  }
+  .brand-banner .banner-content {
+    padding: 0 8px;
+  }
+}
