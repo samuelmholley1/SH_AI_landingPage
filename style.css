@@ -696,13 +696,13 @@ section {
 }
 
 /* =================================================================
-   HIGH-QUALITY SCHEDULING PAGE & CALENDLY EMBED STYLES (v3 - Polished)
+   HIGH-QUALITY SCHEDULING PAGE & CALENDLY EMBED STYLES (v4 - Final)
    ================================================================= */
 
-/* Main container for pages like /audit and /schedule */
+/* Main container for the scheduling page */
 .schedule-page-container {
     padding: 120px 24px 60px 24px;
-    max-width: 1024px;
+    max-width: 1024px; /* Increased max-width to better fit the embed */
     margin: 0 auto;
 }
 
@@ -710,11 +710,11 @@ section {
 .calendly-placeholder {
     position: relative;
     width: 100%;
-    height: 750px;
+    height: 800px; /* Adjusted height for the new layout */
     border-radius: 16px;
     overflow: hidden;
     background-color: var(--color-surface);
-    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
     padding: 24px;
 }
 
@@ -727,38 +727,39 @@ section {
     height: 100%;
     opacity: 0;
     transition: opacity 0.5s 0.1s ease-in-out;
-    z-index: 2; /* Ensure it appears above the skeleton */
+    z-index: 2; /* Ensures it appears above the skeleton */
 }
 
-/* Make the widget visible when it's loaded */
+/* Makes the widget visible when it's loaded */
 .calendly-placeholder .calendly-inline-widget[data-loaded="true"] {
     opacity: 1;
 }
 
-/* --- The Sleek Skeleton Loader --- */
+/* --- High-Fidelity Skeleton Loader --- */
 .skeleton-loader {
     display: flex;
-    gap: 24px;
+    flex-direction: column;
     width: 100%;
     height: 100%;
-    position: absolute; /* Keep it inside the placeholder bounds */
+    position: absolute;
     top: 0;
     left: 0;
-    padding: 24px; /* Match placeholder padding */
+    padding: 32px 48px; /* More accurate padding */
     z-index: 1;
     opacity: 1;
     transition: opacity 0.3s ease-out;
 }
 
-/* Fade out the skeleton when the 'data-hidden' attribute is added by JS */
+/* Fades out the skeleton when JS adds the 'data-hidden' attribute */
 .skeleton-loader[data-hidden="true"] {
     opacity: 0;
-    pointer-events: none; /* Prevent interaction during fade-out */
+    pointer-events: none;
 }
 
 /* Base styles for all shimmering shapes */
 .skeleton-shape {
-    background-color: #e2e8f0;
+    background-color: #eaf0f6; /* Softer, more appropriate gray */
+    border-radius: 6px;
     position: relative;
     overflow: hidden;
 }
@@ -773,9 +774,9 @@ section {
     bottom: 0;
     transform: translateX(-100%);
     background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(255, 255, 255, 0.4) 50%, 
-        transparent 100%
+        transparent 20%, 
+        rgba(255, 255, 255, 0.6) 50%, 
+        transparent 80%
     );
     animation: shimmer 1.75s infinite cubic-bezier(0.4, 0.0, 0.2, 1);
 }
@@ -786,67 +787,57 @@ section {
 }
 
 /* --- Skeleton Structure & Spacing --- */
-.skeleton-main {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.skeleton-sidebar {
-    width: 200px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
 .skeleton-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-shrink: 0; /* Prevent header from shrinking */
+    text-align: center;
+    margin-bottom: 32px;
+}
+.skeleton-header .skeleton-line {
+    margin: 0 auto;
 }
 
-.skeleton-avatar {
-    width: 60px;
-    height: 60px;
+.skeleton-month-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 0 8px;
+}
+
+.skeleton-nav-arrow {
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
 }
 
-.skeleton-header-text {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+.skeleton-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
     gap: 12px;
+    margin-bottom: 12px;
 }
 
-.skeleton-line {
+.skeleton-weekday {
     height: 16px;
     border-radius: 4px;
 }
 
-/* This container now correctly expands to fill space */
-.skeleton-calendar {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-/* The grid fills the available space within the calendar area */
 .skeleton-calendar-grid {
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-auto-rows: minmax(40px, 1fr); /* Ensure rows are responsive */
-    gap: 8px;
+    grid-auto-rows: 1fr;
+    gap: 12px; /* Increased gap for better visual separation */
 }
 
 .skeleton-date-box {
-    border-radius: 6px;
+    border-radius: 8px;
 }
 
-.skeleton-timeslot {
-    height: 44px;
-    border-radius: 8px;
+.skeleton-footer {
+    text-align: center;
+    margin-top: 32px;
+    height: 40px; /* Reserve space for the footer */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

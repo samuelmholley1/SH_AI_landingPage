@@ -29,89 +29,61 @@
 
         <!-- The new, high-quality Calendly embed -->
         <div class="calendly-placeholder">
-            <!-- The Improved Loading Skeleton -->
+            <!-- v4: High-Fidelity Loading Skeleton -->
             <div class="skeleton-loader">
-                <div class="skeleton-main">
-                    <div class="skeleton-header">
-                        <div class="skeleton-shape skeleton-avatar"></div>
-                        <div class="skeleton-header-text">
-                            <div class="skeleton-shape skeleton-line" style="width: 90%;"></div>
-                            <div class="skeleton-shape skeleton-line" style="width: 60%;"></div>
-                        </div>
-                    </div>
-                    <div class="skeleton-calendar">
-                        <div class="skeleton-shape skeleton-line" style="height: 24px; width: 80%; margin-bottom: 24px;"></div>
-                        <div class="skeleton-calendar-grid">
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                            <div class="skeleton-shape skeleton-date-box"></div>
-                        </div>
-                    </div>
+                <!-- Month/Year Header -->
+                <div class="skeleton-header">
+                    <div class="skeleton-shape skeleton-line" style="width: 35%; height: 28px;"></div>
                 </div>
-                <div class="skeleton-sidebar">
-                    <div class="skeleton-shape skeleton-timeslot"></div>
-                    <div class="skeleton-shape skeleton-timeslot"></div>
-                    <div class="skeleton-shape skeleton-timeslot"></div>
-                    <div class="skeleton-shape skeleton-timeslot"></div>
-                    <div class="skeleton-shape skeleton-timeslot"></div>
-                    <div class="skeleton-shape skeleton-timeslot"></div>
+                
+                <!-- Month Navigation -->
+                <div class="skeleton-month-nav">
+                    <div class="skeleton-shape skeleton-nav-arrow"></div>
+                    <div class="skeleton-shape skeleton-line" style="width: 25%; height: 20px;"></div>
+                    <div class="skeleton-shape skeleton-nav-arrow"></div>
+                </div>
+
+                <!-- Days of the Week -->
+                <div class="skeleton-weekdays">
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div class="skeleton-calendar-grid" id="skeleton-calendar-grid">
+                    <!-- 35 date boxes will be generated by script below -->
+                </div>
+                
+                <!-- Time Zone Selector -->
+                <div class="skeleton-footer">
+                    <div class="skeleton-shape skeleton-line" style="width: 45%; height: 20px;"></div>
                 </div>
             </div>
 
             <!-- The Calendly Widget (hidden by default) -->
             <div id="calendly-embed" class="calendly-inline-widget" data-url="https://calendly.com/samuelholleyai/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=fdf5f1"></div>
         </div>
-        
-        <!-- The script that makes the transition happen -->
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        
-        <script>
-            // This script waits for a message from the Calendly widget, then
-            // gracefully transitions from the skeleton to the live calendar.
-            window.addEventListener('message', function(e) {
-                if (e.data.event && e.data.event.indexOf('calendly') === 0) {
-                    if (e.data.event === 'calendly.event_type_viewed') {
-                        const embed = document.getElementById('calendly-embed');
-                        const skeleton = document.querySelector('.skeleton-loader');
-
-                        if (embed) {
-                            // This attribute triggers the fade-in for the real embed
-                            embed.setAttribute('data-loaded', 'true');
+        <script type="text/javascript">
+            // Dynamically generate 35 date boxes for the skeleton calendar grid
+            (function() {
+                var grid = document.getElementById('skeleton-calendar-grid');
+                if (grid) {
+                    for (var i = 0; i < 35; i++) {
+                        var cell = document.createElement('div');
+                        cell.className = 'skeleton-shape skeleton-date-box';
+                        // Make some date boxes appear fainter, mimicking disabled dates
+                        if (Math.random() > 0.8) {
+                            cell.style.opacity = '0.4';
                         }
-                        if (skeleton) {
-                            // This attribute triggers the fade-out for the skeleton
-                            skeleton.setAttribute('data-hidden', 'true');
-                        }
+                        grid.appendChild(cell);
                     }
                 }
-            });
+            })();
         </script>
     </main>
     
