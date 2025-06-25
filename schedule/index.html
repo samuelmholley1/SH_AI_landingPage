@@ -16,7 +16,6 @@
             <div class="nav-menu" id="nav-menu">
                 <a href="https://home.samuelholley.com" class="nav-link">Home</a>
                 <a href="https://reclaim.samuelholley.com" class="nav-link">Framework</a>
-                <!-- You can add an About link later -->
             </div>
         </div>
     </nav>
@@ -25,14 +24,39 @@
     <main class="schedule-page-container">
         <div class="section-header">
             <h1>Book Your Free AI Audit</h1>
-            <p class="section-subtitle">Choose a time that works for you below. The calendar may take a moment to load.</p>
+            <p class="section-subtitle">Choose a time that works for you below.</p>
         </div>
 
-        <!-- The new, improved Calendly embed with a clean CSS placeholder -->
+        <!-- The new, high-quality Calendly embed -->
         <div class="calendly-placeholder">
-            <div class="calendly-inline-widget" data-url="https://calendly.com/samuelholleyai/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff" style="width:100%;height:100%;"></div>
+            <!-- The Loading Skeleton -->
+            <div class="loading-indicator">
+                <div class="spinner"></div>
+                <div class="text">Loading Calendar...</div>
+            </div>
+
+            <!-- The Calendly Widget (hidden by default) -->
+            <div id="calendly-embed" class="calendly-inline-widget" data-url="https://calendly.com/samuelholleyai/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=fdf5f1"></div>
         </div>
+        
+        <!-- The script that makes the transition happen -->
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        
+        <script>
+            // This tiny, robust script waits for a message from the Calendly widget
+            // confirming that it has loaded, then makes it visible.
+            window.addEventListener('message', function(e) {
+                if (e.data.event && e.data.event.indexOf('calendly') === 0) {
+                    if (e.data.event === 'calendly.event_type_viewed') {
+                        const embed = document.getElementById('calendly-embed');
+                        if (embed) {
+                            // The 'data-loaded' attribute triggers our CSS transition
+                            embed.setAttribute('data-loaded', 'true');
+                        }
+                    }
+                }
+            });
+        </script>
     </main>
     
     <!-- Your standard footer -->

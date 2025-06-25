@@ -695,30 +695,84 @@ section {
   }
 }
 
-/* Styling for Schedule Pages */
+/* =================================================================
+   HIGH-QUALITY SCHEDULING PAGE & CALENDLY EMBED STYLES
+   ================================================================= */
+
+/* Main container for pages like /audit and /schedule */
 .schedule-page-container {
     padding: 120px 24px 60px 24px;
     max-width: 1024px;
     margin: 0 auto;
 }
 
-/* Calendly Loading Skeleton Placeholder */
+/* The loading skeleton placeholder for the Calendly widget */
 .calendly-placeholder {
-  position: relative;
+  position: relative; /* This is crucial for positioning the widget inside */
   width: 100%;
-  height: 750px;
-  background-color: #f8fafc; /* A light grey background */
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
+  height: 750px; /* A fixed height prevents page jump */
+  border-radius: 16px; /* A larger radius for a modern look */
+  overflow: hidden; /* Keeps the shimmer effect contained */
+  
+  /* The beautiful gradient background from Copilot's suggestion */
+  background: linear-gradient(135deg, #f8fafc 0%, #fdf5f1 100%);
+  
+  /* A subtle shadow for depth */
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.05);
+
+  /* This will hold the "Loading..." text */
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
-.calendly-placeholder::before {
-  content: 'Loading Calendar...';
-  font-family: var(--font-family-base);
-  color: var(--brand-secondary);
-  font-weight: var(--font-weight-medium);
+/* The actual Calendly widget that will be placed inside the placeholder */
+.calendly-placeholder .calendly-inline-widget {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* It starts transparent and becomes visible when loaded */
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* This is the key: once Calendly loads its iframe, we make our widget visible */
+.calendly-placeholder .calendly-inline-widget[data-loaded="true"] {
+  opacity: 1;
+}
+
+/* This hides Calendly's built-in "..." loading spinner for a cleaner look */
+div.calendly-inline-widget[data-processed="true"] > iframe + div {
+  display: none !important;
+}
+
+/* A container for the loading animation text and icon */
+.loading-indicator {
+  text-align: center;
+  z-index: 1; /* Ensures it's above the shimmer */
+}
+
+/* The pulsing orange circle from Copilot's suggestion */
+.loading-indicator .spinner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #FC6112 30%, #ffd1b3 100%);
+  margin: 0 auto 16px auto;
+  animation: skeletonPulse 1.2s infinite alternate;
+}
+
+/* The loading text */
+.loading-indicator .text {
+  font-size: 1.1rem;
+  color: #FC6112; /* Using your brand's orange */
+  font-weight: 600;
+}
+
+/* The animation keyframes from Copilot's suggestion */
+@keyframes skeletonPulse {
+  0% { opacity: 0.6; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1.05); }
 }
