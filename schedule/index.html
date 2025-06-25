@@ -79,22 +79,16 @@
     </footer>
     <script src="../app.js"></script>
     <script>
-        // --- SCRIPT FOR CALENDLY SKELETON LOADER ---
+        // --- SCRIPT FOR CALENDLY SKELETON LOADER (v7 - SIMPLIFIED & ROBUST) ---
 
-        // This function builds the skeleton grid dynamically.
-        function buildSkeletonGrid() {
-            const grid = document.querySelector('.skeleton-calendar-grid');
-            // A check to make sure the grid element exists before we use it.
-            if (!grid) {
-                console.error('Skeleton grid container not found!');
-                return;
-            }
-
-            // Generate 35 "date" boxes to fill the calendar.
+        // 1. Immediately build the skeleton grid.
+        // This script is at the end of the body, so the '.skeleton-calendar-grid'
+        // element is guaranteed to exist when this code runs.
+        const grid = document.querySelector('.skeleton-calendar-grid');
+        if (grid) {
             for (let i = 0; i < 35; i++) {
                 const cell = document.createElement('div');
                 cell.className = 'skeleton-shape skeleton-date-box';
-                // Randomly make some cells fainter to mimic disabled dates.
                 if (Math.random() > 0.8) {
                    cell.style.opacity = '0.4';
                 }
@@ -102,37 +96,29 @@
             }
         }
 
-        // This function handles the fade-out/fade-in transition once Calendly confirms it has loaded.
-        function handleCalendlyLoad(e) {
-            // We only care about events coming from Calendly.
-            if (e.data.event && e.data.event.indexOf('calendly') === 0) {
-                // Specifically, wait for the 'event_type_viewed' event.
-                if (e.data.event === 'calendly.event_type_viewed') {
-                    const embed = document.getElementById('calendly-embed');
-                    const skeleton = document.querySelector('.skeleton-loader');
+        // 2. Immediately attach the event listener.
+        // This is the most critical change. The listener is attached instantly,
+        // ensuring it is ready before Calendly has any chance to send its message.
+        window.addEventListener('message', function handleCalendlyLoad(e) {
+            // We only care about the specific event that confirms the view has loaded.
+            if (e.data.event && e.data.event === 'calendly.event_type_viewed') {
+                const embed = document.getElementById('calendly-embed');
+                const skeleton = document.querySelector('.skeleton-loader');
 
-                    if (embed) {
-                        // This data-attribute triggers our CSS to fade the widget in.
-                        embed.setAttribute('data-loaded', 'true');
-                    }
-                    if (skeleton) {
-                        // This data-attribute triggers our CSS to fade the skeleton out.
-                        skeleton.setAttribute('data-hidden', 'true');
-                    }
-                    
-                    // Once our job is done, we can stop listening to prevent any potential duplicate triggers.
-                    window.removeEventListener('message', handleCalendlyLoad);
+                if (embed) {
+                    // Trigger the fade-in for the real embed.
+                    embed.setAttribute('data-loaded', 'true');
                 }
+                if (skeleton) {
+                    // Trigger the fade-out for the skeleton.
+                    skeleton.setAttribute('data-hidden', 'true');
+                }
+                
+                // Important: Clean up the listener after it has done its job
+                // to prevent it from running again accidentally.
+                window.removeEventListener('message', handleCalendlyLoad);
             }
-        }
-
-        // --- SCRIPT EXECUTION ---
-
-        // 1. Build the skeleton grid as soon as the page's HTML is ready.
-        document.addEventListener('DOMContentLoaded', buildSkeletonGrid);
-
-        // 2. Start listening for the 'message' from the Calendly iframe.
-        window.addEventListener('message', handleCalendlyLoad);
+        });
     </script>
 </body>
 </html>
