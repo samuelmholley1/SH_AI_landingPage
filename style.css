@@ -694,3 +694,31 @@ section {
     padding: 0 8px;
   }
 }
+
+/* Styling for Schedule Pages */
+.schedule-page-container {
+    padding: 120px 24px 60px 24px;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+/* Calendly Loading Skeleton Placeholder */
+.calendly-placeholder {
+  position: relative;
+  width: 100%;
+  height: 750px;
+  background-color: #f8fafc; /* A light grey background */
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.calendly-placeholder::before {
+  content: 'Loading Calendar...';
+  font-family: var(--font-family-base);
+  color: var(--brand-secondary);
+  font-weight: var(--font-weight-medium);
+}

@@ -3,66 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book a Call | Samuel Holley AI Consulting</title>
+    <title>Book a Free AI Audit | Samuel Holley AI Consulting</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+    <!-- Your standard navigation bar -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
-                <a href="../home/index.html"><img src="../logo.png" alt="Samuel Holley AI Consulting Logo" style="height: 50px;"></a>
+                <a href="https://home.samuelholley.com"><img src="../logo.png" alt="Samuel Holley AI Consulting Logo" style="height: 50px;"></a>
             </div>
             <div class="nav-menu" id="nav-menu">
                 <a href="https://home.samuelholley.com" class="nav-link">Home</a>
-                <a href="https://home.samuelholley.com#pricing" class="nav-link">Services</a>
                 <a href="https://reclaim.samuelholley.com" class="nav-link">Framework</a>
-                <a href="https://home.samuelholley.com#about" class="nav-link">About</a>
-                <a href="https://home.samuelholley.com#contact" class="nav-link">Contact</a>
+                <!-- You can add an About link later -->
             </div>
         </div>
     </nav>
-    <section class="container" style="margin-top: 100px;">
-        <h1>Book a Free AI Audit or Consulting Call</h1>
-        <!-- Calendly skeleton placeholder -->
-        <div id="calendly-skeleton" style="width:100%;height:700px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8fafc 0%,#fbeee6 100%);border-radius:16px;box-shadow:0 4px 24px 0 rgba(252,97,18,0.07);margin-bottom:24px;position:relative;overflow:hidden;z-index:2;">
-            <div style="text-align:center;">
-                <div class="skeleton-loader" style="width:60px;height:60px;border-radius:50%;background:linear-gradient(90deg,#fc6112 30%,#ffb36a 100%);margin:0 auto 18px auto;animation:skeletonPulse 1.2s infinite alternate;"></div>
-                <div style="font-size:1.2rem;color:#FC6112;font-weight:600;letter-spacing:0.02em;">Loading calendar...</div>
-            </div>
+
+    <!-- Main Content Area -->
+    <main class="schedule-page-container">
+        <div class="section-header">
+            <h1>Book Your Free AI Audit</h1>
+            <p class="section-subtitle">Choose a time that works for you below. The calendar may take a moment to load.</p>
         </div>
-        <!-- Calendly inline widget begin -->
-        <div class="calendly-inline-widget" data-url="https://calendly.com/samuelholleyai/30min" style="min-width:320px;height:700px;position:absolute;left:0;top:0;width:100%;opacity:0;pointer-events:none;z-index:1;"></div>
-        <script type="text/javascript">
-        // Show skeleton until Calendly iframe is visible
-        window.addEventListener('DOMContentLoaded', function() {
-            var calendlyWidget = document.querySelector('.calendly-inline-widget');
-            var skeleton = document.getElementById('calendly-skeleton');
-            var observer;
-            var fallbackTimeout = setTimeout(function() {
-                skeleton.style.display = 'none';
-                calendlyWidget.style.opacity = '1';
-                calendlyWidget.style.pointerEvents = 'auto';
-            }, 15000);
-            function checkCalendlyLoaded() {
-                var iframe = calendlyWidget.querySelector('iframe');
-                if (iframe && iframe.style.visibility !== 'hidden' && iframe.offsetHeight > 100) {
-                    calendlyWidget.style.opacity = '1';
-                    calendlyWidget.style.pointerEvents = 'auto';
-                    skeleton.style.display = 'none';
-                    clearTimeout(fallbackTimeout);
-                    if (observer) observer.disconnect();
-                }
-            }
-            observer = new MutationObserver(checkCalendlyLoaded);
-            observer.observe(calendlyWidget, { childList: true, subtree: true });
-            // Also poll in case Calendly loads iframe content after mutation
-            var pollInterval = setInterval(checkCalendlyLoaded, 500);
-            setTimeout(function() { clearInterval(pollInterval); }, 16000);
-        });
-        </script>
+
+        <!-- The new, improved Calendly embed with a clean CSS placeholder -->
+        <div class="calendly-placeholder">
+            <div class="calendly-inline-widget" data-url="https://calendly.com/samuelholleyai/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff" style="width:100%;height:100%;"></div>
+        </div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        <!-- Calendly inline widget end -->
-    </section>
+    </main>
+    
+    <!-- Your standard footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-bottom">
@@ -70,12 +43,6 @@
             </div>
         </div>
     </footer>
-    <script>
-    // Skeleton loader animation
-    const style = document.createElement('style');
-    style.innerHTML = `@keyframes skeletonPulse {0%{opacity:0.5;}100%{opacity:1;}}`;
-    document.head.appendChild(style);
-    </script>
     <script src="../app.js"></script>
 </body>
 </html>
