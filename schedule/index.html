@@ -116,14 +116,13 @@
                 const skeleton = document.querySelector('.skeleton-loader');
 
                 if (embed) {
-                    // Trigger the fade-in for the real embed.
+                    // Trigger the fade-in for the real embed container.
                     embed.setAttribute('data-loaded', 'true');
                 }
                 if (skeleton) {
                     // Trigger the fade-out for the skeleton.
                     skeleton.setAttribute('data-hidden', 'true');
                 }
-                
                 // Important: Clean up the listener after it has done its job
                 // to prevent it from running again accidentally.
                 window.removeEventListener('message', handleCalendlyLoad);
