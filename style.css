@@ -696,75 +696,67 @@ section {
 }
 
 /* =================================================================
-   HIGH-QUALITY SCHEDULING PAGE & CALENDLY EMBED STYLES (v4 - Final)
+   HIGH-QUALITY SCHEDULING PAGE & CALENDLY EMBED STYLES (v6 - Definitive)
    ================================================================= */
 
 /* Main container for the scheduling page */
 .schedule-page-container {
     padding: 120px 24px 60px 24px;
-    max-width: 1024px; /* Increased max-width to better fit the embed */
+    max-width: 1024px;
     margin: 0 auto;
 }
 
-/* The placeholder container for both the skeleton and the widget */
+/* --- THE RESPONSIVE CONTAINER (KEY FIX) --- */
 .calendly-placeholder {
     position: relative;
     width: 100%;
-    height: 800px; /* Adjusted height for the new layout */
+    padding-top: 115%;
+    background-color: var(--color-surface);
     border-radius: 16px;
     overflow: hidden;
-    background-color: var(--color-surface);
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
-    padding: 24px;
 }
 
-/* The actual Calendly widget */
-.calendly-placeholder .calendly-inline-widget {
+.skeleton-loader,
+.calendly-inline-widget {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transition: opacity 0.5s 0.1s ease-in-out;
-    z-index: 2; /* Ensures it appears above the skeleton */
 }
 
-/* Makes the widget visible when it's loaded */
-.calendly-placeholder .calendly-inline-widget[data-loaded="true"] {
+.calendly-inline-widget {
+    opacity: 0;
+    transition: opacity 0.5s 0.1s ease-in-out;
+    z-index: 2;
+}
+
+.calendly-inline-widget[data-loaded="true"] {
     opacity: 1;
 }
 
-/* --- High-Fidelity Skeleton Loader --- */
 .skeleton-loader {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 32px 48px; /* More accurate padding */
+    padding: 32px 48px;
     z-index: 1;
     opacity: 1;
-    transition: opacity 0.3s ease-out;
+    transition: opacity 0.4s ease-out;
 }
 
-/* Fades out the skeleton when JS adds the 'data-hidden' attribute */
 .skeleton-loader[data-hidden="true"] {
     opacity: 0;
     pointer-events: none;
 }
 
-/* Base styles for all shimmering shapes */
 .skeleton-shape {
-    background-color: #eaf0f6; /* Softer, more appropriate gray */
+    background-color: #eaf0f6;
     border-radius: 6px;
     position: relative;
     overflow: hidden;
 }
 
-/* The shimmer animation effect */
 .skeleton-shape::after {
     content: '';
     position: absolute;
@@ -773,11 +765,7 @@ section {
     right: 0;
     bottom: 0;
     transform: translateX(-100%);
-    background: linear-gradient(90deg, 
-        transparent 20%, 
-        rgba(255, 255, 255, 0.6) 50%, 
-        transparent 80%
-    );
+    background: linear-gradient(90deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
     animation: shimmer 1.75s infinite cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
@@ -786,58 +774,12 @@ section {
     to { transform: translateX(100%); }
 }
 
-/* --- Skeleton Structure & Spacing --- */
-.skeleton-header {
-    text-align: center;
-    margin-bottom: 32px;
-}
-.skeleton-header .skeleton-line {
-    margin: 0 auto;
-}
-
-.skeleton-month-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-    padding: 0 8px;
-}
-
-.skeleton-nav-arrow {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-}
-
-.skeleton-weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.skeleton-weekday {
-    height: 16px;
-    border-radius: 4px;
-}
-
-.skeleton-calendar-grid {
-    flex-grow: 1;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-auto-rows: 1fr;
-    gap: 12px; /* Increased gap for better visual separation */
-}
-
-.skeleton-date-box {
-    border-radius: 8px;
-}
-
-.skeleton-footer {
-    text-align: center;
-    margin-top: 32px;
-    height: 40px; /* Reserve space for the footer */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+.skeleton-header { text-align: center; margin-bottom: 32px; }
+.skeleton-header .skeleton-line { margin: 0 auto; }
+.skeleton-month-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding: 0 8px; }
+.skeleton-nav-arrow { width: 36px; height: 36px; border-radius: 50%; }
+.skeleton-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; margin-bottom: 12px; }
+.skeleton-weekday { height: 16px; border-radius: 4px; }
+.skeleton-calendar-grid { flex-grow: 1; display: grid; grid-template-columns: repeat(7, 1fr); grid-auto-rows: 1fr; gap: 12px; }
+.skeleton-date-box { border-radius: 8px; }
+.skeleton-footer { text-align: center; margin-top: 32px; height: 40px; display: flex; align-items: center; justify-content: center; }
