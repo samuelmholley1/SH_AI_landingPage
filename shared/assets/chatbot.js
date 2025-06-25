@@ -7,9 +7,16 @@
   /*** 1. Create HTML structure ***/
   const container = document.createElement('div');
   container.id = 'custom-ai-chat-container';
+
+  // Robustly determine asset path relative to the HTML document
+  const scriptTag = document.querySelector('script[src*="chatbot.js"]');
+  const scriptSrc = scriptTag ? scriptTag.src : '';
+  // Get the path to the directory containing chatbot.js
+  const assetBasePath = scriptSrc.substring(0, scriptSrc.lastIndexOf('/'));
+
   container.innerHTML = `
     <div id="custom-chat-icon">
-      <img src="/phoenix.svg" alt="Open Chat" />
+      <img src="${assetBasePath}/phoenix.svg" alt="Open Chat" />
     </div>
     <div id="custom-chat-window" class="custom-chat-hidden">
       <div id="custom-chat-header">
