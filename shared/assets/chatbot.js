@@ -39,7 +39,7 @@
       right: 20px;
       width: 60px; /* Increased size for the new icon */
       height: 60px; /* Increased size for the new icon */
-      background-color: #FF9500; /* Brand Orange */
+      background-color: #FFFFFF; /* White background */
       color: white;
       border-radius: 50%;
       cursor: pointer;
@@ -47,7 +47,7 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      border: 2px solid #000033; /* Brand Navy Outline */
+      border: 3px solid #000033; /* Bolder Brand Navy Outline */
       z-index: 2147483646; /* High z-index */
       transition: transform 0.2s ease-out;
     }
@@ -55,6 +55,7 @@
         width: 75%; /* Adjust as needed to center the orange part */
         height: 75%; /* Adjust as needed to center the orange part */
         object-fit: contain;
+        transform: translateY(3px); /* Nudge icon down slightly */
     }
     #custom-chat-icon:hover { transform: scale(1.1); }
     #custom-chat-window {
