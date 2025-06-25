@@ -68,27 +68,7 @@
             </div>
         </div>
     </footer>
-    <script>
-    // Show/hide contact info field based on reference consent
-    document.addEventListener('DOMContentLoaded', function() {
-        const yesRadio = document.querySelector('input[name="reference-consent"][value="yes"]');
-        const noRadio = document.querySelector('input[name="reference-consent"][value="no"]');
-        const contactField = document.getElementById('contact-info-field');
-        const contactInput = document.getElementById('contact-info');
-        function updateContactField() {
-            if (yesRadio.checked) {
-                contactField.style.display = 'flex';
-                contactInput.required = true;
-            } else {
-                contactField.style.display = 'none';
-                contactInput.required = false;
-            }
-        }
-        yesRadio.addEventListener('change', updateContactField);
-        noRadio.addEventListener('change', updateContactField);
-        updateContactField();
-    });
-    </script>
-    <script src="../app.js"></script>
+
+    <script src="assets/app.js"></script>
 </body>
 </html>
