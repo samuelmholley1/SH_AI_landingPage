@@ -79,48 +79,6 @@
         });
     </script>
     <script src="../app.js"></script>
-    <script>
-        // --- SCRIPT FOR CALENDLY SKELETON LOADER (v7 - SIMPLIFIED & ROBUST) ---
-
-        // 1. Immediately build the skeleton grid.
-        // This script is at the end of the body, so the '.skeleton-calendar-grid'
-        // element is guaranteed to exist when this code runs.
-        const grid = document.querySelector('.skeleton-calendar-grid');
-        if (grid) {
-            for (let i = 0; i < 35; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'skeleton-shape skeleton-date-box';
-                if (Math.random() > 0.8) {
-                   cell.style.opacity = '0.4';
-                }
-                grid.appendChild(cell);
-            }
-        }
-
-        // 2. Immediately attach the event listener.
-        // This is the most critical change. The listener is attached instantly,
-        // ensuring it is ready before Calendly has any chance to send its message.
-        window.addEventListener('message', function handleCalendlyLoad(e) {
-            // We only care about the specific event that confirms the view has loaded.
-            if (e.data.event && e.data.event === 'calendly.event_type_viewed') {
-                const embed = document.getElementById('calendly-embed');
-                const skeleton = document.querySelector('.skeleton-loader');
-
-                if (embed) {
-                    // Trigger the fade-in for the real embed.
-                    embed.setAttribute('data-loaded', 'true');
-                }
-                if (skeleton) {
-                    // Trigger the fade-out for the skeleton.
-                    skeleton.setAttribute('data-hidden', 'true');
-                }
-                
-                // Important: Clean up the listener after it has done its job
-                // to prevent it from running again accidentally.
-                window.removeEventListener('message', handleCalendlyLoad);
-            }
-        });
-    </script>
     <script src="../chatbot.js"></script>
 </body>
 </html>

@@ -1,6 +1,10 @@
 (function() {
+  console.log("Chatbot script started.");
   // Prevent duplicate widget insertion
-  if (document.getElementById('custom-ai-chat-container')) return;
+  if (document.getElementById('custom-ai-chat-container')) {
+    console.log("Chatbot container already exists. Exiting.");
+    return;
+  }
 
   const CHATBOT_API_URL = "https://nodejs-production-b88e.up.railway.app/chat"; // YOUR RAILWAY BACKEND URL
 
@@ -26,6 +30,7 @@
     </div>
   `;
   document.body.appendChild(container);
+  console.log("Chatbot HTML injected.");
 
   /*** 2. Inject CSS styles for the widget ***/
   const style = document.createElement('style');
@@ -126,6 +131,7 @@
     #custom-chat-send svg { margin-left: 2px; } /* Fine-tune icon position */
   `;
   document.head.appendChild(style);
+  console.log("Chatbot CSS injected.");
 
   /*** 3. DOM Element References ***/
   const chatIcon      = document.getElementById('custom-chat-icon');
@@ -260,5 +266,6 @@
 
   /*** 6. Initial Load ***/
   loadState();
+  console.log("Chatbot initial state loaded.");
 
 })();
