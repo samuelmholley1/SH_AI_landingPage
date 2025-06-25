@@ -719,63 +719,83 @@ section {
     pointer-events: none;
 }
 
-/* --- Skeleton Component Styles (NEW) --- */
-@keyframes skeleton-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
+/* =================================================================
+   SKELETON LOADER STYLES (v6 - Definitive)
+   ================================================================= */
 
 .skeleton-shape {
-    background-color: #e2e8f0; /* A neutral, light gray */
-    border-radius: var(--radius-base);
-    animation: skeleton-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    background-color: #e2e8f0; /* A neutral gray */
+    border-radius: 4px;
 }
 
+.skeleton-line {
+    height: 1em; /* Base height on font size */
+}
+
+/* --- Header --- */
 .skeleton-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--space-24);
+    margin-bottom: 24px;
 }
 
+/* --- Month Navigation --- */
 .skeleton-month-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--space-16);
+    margin-bottom: 16px;
 }
-
 .skeleton-nav-arrow {
     width: 24px;
     height: 24px;
+    border-radius: 50%;
 }
 
+/* --- Weekdays --- */
 .skeleton-weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: var(--space-8);
-    margin-bottom: var(--space-8);
+    gap: 8px;
+    margin-bottom: 8px;
 }
-
 .skeleton-weekday {
     height: 16px;
+    width: 70%;
+    margin: 0 auto;
 }
 
+/* --- Calendar Grid --- */
 .skeleton-calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: var(--space-8);
+    gap: 8px;
     flex-grow: 1;
 }
-
 .skeleton-date-box {
-    aspect-ratio: 1 / 1; /* Makes the date boxes square */
+    aspect-ratio: 1 / 1; /* Make them square */
 }
 
+/* --- Footer --- */
 .skeleton-footer {
-    margin-top: var(--space-24);
+    margin-top: 24px;
     display: flex;
     justify-content: center;
+}
+
+/* --- Animation --- */
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.skeleton-shape {
+    animation: skeleton-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 /* Remove .calendly-inline-widget absolute/opacity rules (Calendly handles its own iframe) */
