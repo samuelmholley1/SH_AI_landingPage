@@ -719,4 +719,63 @@ section {
     pointer-events: none;
 }
 
+/* --- Skeleton Component Styles (NEW) --- */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.skeleton-shape {
+    background-color: #e2e8f0; /* A neutral, light gray */
+    border-radius: var(--radius-base);
+    animation: skeleton-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeleton-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-24);
+}
+
+.skeleton-month-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-16);
+}
+
+.skeleton-nav-arrow {
+    width: 24px;
+    height: 24px;
+}
+
+.skeleton-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+.skeleton-weekday {
+    height: 16px;
+}
+
+.skeleton-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--space-8);
+    flex-grow: 1;
+}
+
+.skeleton-date-box {
+    aspect-ratio: 1 / 1; /* Makes the date boxes square */
+}
+
+.skeleton-footer {
+    margin-top: var(--space-24);
+    display: flex;
+    justify-content: center;
+}
+
 /* Remove .calendly-inline-widget absolute/opacity rules (Calendly handles its own iframe) */
