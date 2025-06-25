@@ -149,10 +149,5 @@ function initializeFloatingElements() {
         }
     }
 }
-    
-        setTimeout(() => {
-            heroContent.style.opacity = '1';
-            heroContent.style.transform = 'translateY(0)';
-        }, 100);
-    
+
 
