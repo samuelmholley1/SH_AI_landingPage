@@ -33,21 +33,27 @@
         <!-- Calendly inline widget begin -->
         <div class="calendly-inline-widget" data-url="https://calendly.com/samuelholleyai/30min" style="min-width:320px;height:700px;display:none;"></div>
         <script type="text/javascript">
-        // Show skeleton until Calendly loads
+        // Show skeleton until Calendly loads (robust fallback)
         window.addEventListener('DOMContentLoaded', function() {
             var calendlyWidget = document.querySelector('.calendly-inline-widget');
             var skeleton = document.getElementById('calendly-skeleton');
+            var fallbackTimeout = setTimeout(function() {
+                // Always hide skeleton after 10s as a fallback
+                skeleton.style.display = 'none';
+                calendlyWidget.style.display = 'block';
+            }, 10000);
             var observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     if (calendlyWidget && calendlyWidget.childNodes.length > 0) {
                         calendlyWidget.style.display = 'block';
                         skeleton.style.display = 'none';
+                        clearTimeout(fallbackTimeout);
                         observer.disconnect();
                     }
                 });
             });
             if (calendlyWidget) {
-                observer.observe(calendlyWidget, { childList: true });
+                observer.observe(calendlyWidget, { childList: true, subtree: true });
             }
         });
         </script>
