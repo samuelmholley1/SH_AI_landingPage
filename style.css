@@ -313,30 +313,6 @@ section {
   .card:hover {
     transform: translateY(-8px);
   }
-  
-  .hero-cta::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -30px;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 2px;
-    background-color: var(--color-primary);
-    opacity: 0.7;
-  }
-
-  .hero-cta::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -30px;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 2px;
-    background-color: var(--color-primary);
-    opacity: 0.7;
-  }
 }
 
 /* Section Header */
