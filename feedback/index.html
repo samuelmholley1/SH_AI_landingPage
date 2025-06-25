@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Story | Samuel Holley AI Consulting</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../home/index.html"><img src="../logo.png" alt="Samuel Holley AI Consulting Logo" style="height: 50px;"></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="../home/index.html" class="nav-link">Home</a>
+                <a href="../reclaim/index.html" class="nav-link">Framework</a>
+            </div>
+        </div>
+    </nav>
+    <section class="container" style="margin-top: 100px; max-width: 600px;">
+        <h1>Share Your Story</h1>
+        <form id="testimonial-form" style="display: flex; flex-direction: column; gap: 24px;">
+            <!-- Part 1: The Testimonial -->
+            <div>
+                <label for="client-name"><strong>Client Name</strong></label><br>
+                <input type="text" id="client-name" name="client-name" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;">
+            </div>
+            <div>
+                <label for="story"><strong>Your Story</strong></label>
+                <p style="font-size: 0.95em; color: #4A5568; margin-top: 4px;">Could you share a brief story (2-3 paragraphs) about your experience? Please touch on the challenge you faced before we worked together and how the AI-related explanations or coaching helped you overcome it.</p>
+                <textarea id="story" name="story" rows="7" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;"></textarea>
+            </div>
+            <!-- Part 2: Permission & References -->
+            <div>
+                <label><strong>Public Use Consent</strong></label>
+                <p style="font-size: 0.95em; color: #4A5568; margin-top: 4px;">Are you comfortable with me sharing your testimonial on my website, social media, or in other marketing materials? You can choose how you'd like to be identified.</p>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label><input type="radio" name="public-consent" value="full-name" required> Yes, you can use my full name (e.g., Jane Doe).</label>
+                    <label><input type="radio" name="public-consent" value="first-initial"> Yes, but please only use my first name and last initial (e.g., Jane D.).</label>
+                    <label><input type="radio" name="public-consent" value="anonymous"> Yes, but I prefer to remain anonymous.</label>
+                </div>
+            </div>
+            <div>
+                <label><strong>Reference Consent</strong></label>
+                <p style="font-size: 0.95em; color: #4A5568; margin-top: 4px;">Occasionally, a potential new client is interested in speaking directly with someone I've worked with. Would you be open to being a reference in the future? This would involve a brief, informal chat about your experience.</p>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label><input type="radio" name="reference-consent" value="yes" required> Yes, I'd be happy to be a reference. You can share my preferred contact information with serious potential clients.</label>
+                    <label><input type="radio" name="reference-consent" value="no"> Not at this time.</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn--primary btn--lg" style="margin-top: 16px;">Submit Testimonial</button>
+        </form>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2025 Samuel Holley | AI Consulting. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../app.js"></script>
+</body>
+</html>
