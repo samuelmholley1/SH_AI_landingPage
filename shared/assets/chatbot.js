@@ -9,7 +9,7 @@
   container.id = 'custom-ai-chat-container';
   container.innerHTML = `
     <div id="custom-chat-icon">
-      <img src="/phoenix.svg" alt="Open Chat" />
+      <img src="assets/phoenix.svg" alt="Open Chat" />
     </div>
     <div id="custom-chat-window" class="custom-chat-hidden">
       <div id="custom-chat-header">
@@ -20,7 +20,7 @@
       <div id="custom-chat-input-area">
         <input type="text" id="custom-chat-input" placeholder="Ask something..." aria-label="Chat input"/>
         <button id="custom-chat-send" aria-label="Send message">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20px" height="20px"><path d="M0 0h24v24H0z" fill="none"/><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20px" height="20px"><title>Send</title><path d="M0 0h24v24H0z" fill="none"/><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
         </button>
       </div>
     </div>
@@ -28,6 +28,7 @@
   document.body.appendChild(container);
 
   /*** 2. Inject CSS styles for the widget ***/
+  // Styles are injected directly into the head to keep the widget self-contained.
   const style = document.createElement('style');
   style.textContent = `
     #custom-ai-chat-container * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -212,7 +213,7 @@
 
     addMessageToUI('user', userText);
     conversationHistory.push({ role: 'user', text: userText });
-    saveState(); // Save user message immediately
+    // saveState() is called in the finally block
 
     inputField.value = '';
     sendButton.disabled = true;
@@ -248,7 +249,10 @@
         messagesDiv.removeChild(thinkingMessageElement);
         thinkingMessageElement = null;
       }
-      addMessageToUI('error', 'Oops! Something went wrong. Please try again.');
+      const errorMessage = error instanceof TypeError
+        ? 'Oops! A network error occurred. Please check your connection and try again.'
+        : 'Oops! Something went wrong. Please try again.';
+      addMessageToUI('error', errorMessage);
       // No need to add this error to conversationHistory to be resent, but good for UI
     } finally {
       sendButton.disabled = false;
