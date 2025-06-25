@@ -9,7 +9,7 @@
   container.id = 'custom-ai-chat-container';
   container.innerHTML = `
     <div id="custom-chat-icon">
-      <img src="assets/phoenix.svg" alt="Open Chat" />
+      <img src="/phoenix.svg" alt="Open Chat" />
     </div>
     <div id="custom-chat-window" class="custom-chat-hidden">
       <div id="custom-chat-header">
@@ -20,7 +20,7 @@
       <div id="custom-chat-input-area">
         <input type="text" id="custom-chat-input" placeholder="Ask something..." aria-label="Chat input"/>
         <button id="custom-chat-send" aria-label="Send message">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20px" height="20px"><title>Send</title><path d="M0 0h24v24H0z" fill="none"/><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20px" height="20px"><path d="M0 0h24v24H0z" fill="none"/><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
         </button>
       </div>
     </div>
@@ -28,7 +28,6 @@
   document.body.appendChild(container);
 
   /*** 2. Inject CSS styles for the widget ***/
-  // Styles are injected directly into the head to keep the widget self-contained.
   const style = document.createElement('style');
   style.textContent = `
     #custom-ai-chat-container * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -39,7 +38,7 @@
       right: 20px;
       width: 60px; /* Increased size for the new icon */
       height: 60px; /* Increased size for the new icon */
-      background-color: #FFFFFF; /* White background */
+      background-color: white; /* White background */
       color: white;
       border-radius: 50%;
       cursor: pointer;
@@ -47,7 +46,7 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      border: 3px solid #000033; /* Bolder Brand Navy Outline */
+      border: 6px solid #000033; /* Bolder Brand Navy Outline */
       z-index: 2147483646; /* High z-index */
       transition: transform 0.2s ease-out;
     }
@@ -55,7 +54,6 @@
         width: 75%; /* Adjust as needed to center the orange part */
         height: 75%; /* Adjust as needed to center the orange part */
         object-fit: contain;
-        transform: translateY(3px); /* Nudge icon down slightly */
     }
     #custom-chat-icon:hover { transform: scale(1.1); }
     #custom-chat-window {
@@ -214,7 +212,7 @@
 
     addMessageToUI('user', userText);
     conversationHistory.push({ role: 'user', text: userText });
-    // saveState() is called in the finally block
+    saveState(); // Save user message immediately
 
     inputField.value = '';
     sendButton.disabled = true;
@@ -250,10 +248,7 @@
         messagesDiv.removeChild(thinkingMessageElement);
         thinkingMessageElement = null;
       }
-      const errorMessage = error instanceof TypeError
-        ? 'Oops! A network error occurred. Please check your connection and try again.'
-        : 'Oops! Something went wrong. Please try again.';
-      addMessageToUI('error', errorMessage);
+      addMessageToUI('error', 'Oops! Something went wrong. Please try again.');
       // No need to add this error to conversationHistory to be resent, but good for UI
     } finally {
       sendButton.disabled = false;

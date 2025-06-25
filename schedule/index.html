@@ -3,70 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schedule a Call | Samuel Holley</title>
+    <title>Book a Free AI Audit | Samuel Holley AI Consulting</title>
     <link rel="stylesheet" href="assets/style.css">
     <script src="assets/chatbot.js" defer></script>
 </head>
 <body>
     <!-- Main Content Area -->
-    <main class="schedule-page-container" role="main" tabindex="-1">
+    <main class="schedule-page-container">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <img src="assets/samuel_holley_logo_transparent.png" alt="Samuel Holley AI Consulting Logo" style="height: 60px;"/>
+        </div>
         <div class="section-header">
-            <img src="assets/logo.png" alt="Samuel Holley AI Consulting Logo" style="height: 60px; display: block; margin: 0 auto 20px auto;">
             <h1>Book Your Free AI Audit</h1>
             <p class="section-subtitle">Choose a time that works for you below.</p>
         </div>
 
         <!-- The new, high-quality Calendly embed -->
         <div class="calendly-placeholder">
-            <!-- v6: High-Fidelity Loading Skeleton with SVG Calendar Placeholder -->
-            <div class="skeleton-loader" aria-live="polite" aria-busy="true" style="display: flex; align-items: flex-start; justify-content: center; height: 100%; width: 100%; position: absolute; top: 0; left: 0; padding-top: 0;">
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; height: 100%;">
-                    <!-- SVG Calendar Placeholder -->
-                    <svg viewBox="0 0 220 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width: 95%; height: 95%; max-width: 600px; max-height: 480px; display: block; object-fit: contain; margin-bottom: 32px; margin-top: 0;">
-                        <rect x="10" y="30" width="200" height="140" rx="16" fill="#eaf0f6"/>
-                        <rect x="10" y="30" width="200" height="24" rx="8" fill="#FC6112" fill-opacity="0.18"/>
-                        <rect x="30" y="60" width="32" height="32" rx="6" fill="#fff"/>
-                        <rect x="70" y="60" width="32" height="32" rx="6" fill="#fff"/>
-                        <rect x="110" y="60" width="32" height="32" rx="6" fill="#fff"/>
-                        <rect x="150" y="60" width="32" height="32" rx="6" fill="#fff"/>
-                        <rect x="30" y="100" width="32" height="32" rx="6" fill="#fff"/>
-                        <rect x="70" y="100" width="32" height="32" rx="6" fill="#fff"/>
-                        <rect x="110" y="100" width="32" height="32" rx="6" fill="#fff"/>
-                        <rect x="150" y="100" width="32" height="32" rx="6" fill="#fff"/>
-                        <rect x="30" y="140" width="32" height="16" rx="6" fill="#fff"/>
-                        <rect x="70" y="140" width="32" height="16" rx="6" fill="#fff"/>
-                        <rect x="110" y="140" width="32" height="16" rx="6" fill="#fff"/>
-                        <rect x="150" y="140" width="32" height="16" rx="6" fill="#fff"/>
-                        <rect x="30" y="30" width="152" height="8" rx="4" fill="#fff" fill-opacity="0.7"/>
-                        <rect x="30" y="40" width="80" height="6" rx="3" fill="#fff" fill-opacity="0.5"/>
-                    </svg>
-                    <div style="font-size: 1.3rem; color: #4A5568; opacity: 0.85; text-align: center;">Loading calendar...</div>
+            <!-- v5: High-Fidelity Loading Skeleton -->
+            <div class="skeleton-loader">
+                <!-- Month/Year Header -->
+                <div class="skeleton-header">
+                    <div class="skeleton-shape skeleton-line" style="width: 35%; height: 28px;"></div>
+                </div>
+                
+                <!-- Month Navigation -->
+                <div class="skeleton-month-nav">
+                    <div class="skeleton-shape skeleton-nav-arrow"></div>
+                    <div class="skeleton-shape skeleton-line" style="width: 25%; height: 20px;"></div>
+                    <div class="skeleton-shape skeleton-nav-arrow"></div>
+                </div>
+
+                <!-- Days of the Week -->
+                <div class="skeleton-weekdays">
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday"></div>
+                </div>
+
+                <!-- Calendar Grid (Now populated by script at the end of the body) -->
+                <div class="skeleton-calendar-grid">
+                </div>
+                
+                <!-- Time Zone Selector -->
+                <div class="skeleton-footer">
+                    <div class="skeleton-shape skeleton-line" style="width: 45%; height: 20px;"></div>
                 </div>
             </div>
 
             <!-- The Calendly Widget (hidden by default) -->
-            <div id="calendly-embed" aria-label="Calendly Scheduling Widget"></div>
+            <div id="calendly-embed" class="calendly-inline-widget" data-url="https://calendly.com/samuelholleyai/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=fdf5f1"></div>
         </div>
     </main>
     
     <!-- Your standard footer -->
-    <footer class="footer" aria-label="Site Footer">
+    <footer class="footer">
         <div class="container">
             <div class="footer-bottom">
                 <p>© 2025 Samuel Holley | AI Consulting. All rights reserved.</p>
             </div>
         </div>
     </footer>
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+    <script src="assets/app.js"></script>
     <script>
-        // Calendly embed initialization (required for div-based embed)
-        Calendly.initInlineWidget({
-            url: 'https://calendly.com/samuelholleyai/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=fdf5f1',
-            parentElement: document.getElementById('calendly-embed'),
-            prefill: {},
-            utm: {}
+        // --- SCRIPT FOR CALENDLY SKELETON LOADER (v7 - SIMPLIFIED & ROBUST) ---
+
+        // 1. Immediately build the skeleton grid.
+        // This script is at the end of the body, so the '.skeleton-calendar-grid'
+        // element is guaranteed to exist when this code runs.
+        const grid = document.querySelector('.skeleton-calendar-grid');
+        if (grid) {
+            for (let i = 0; i < 35; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'skeleton-shape skeleton-date-box';
+                if (Math.random() > 0.8) {
+                   cell.style.opacity = '0.4';
+                }
+                grid.appendChild(cell);
+            }
+        }
+
+        // 2. Immediately attach the event listener.
+        // This is the most critical change. The listener is attached instantly,
+        // ensuring it is ready before Calendly has any chance to send its message.
+        window.addEventListener('message', function handleCalendlyLoad(e) {
+            // We only care about the specific event that confirms the view has loaded.
+            if (e.data.event && e.data.event === 'calendly.event_type_viewed') {
+                const embed = document.getElementById('calendly-embed');
+                const skeleton = document.querySelector('.skeleton-loader');
+
+                if (embed) {
+                    // Trigger the fade-in for the real embed.
+                    embed.setAttribute('data-loaded', 'true');
+                }
+                if (skeleton) {
+                    // Trigger the fade-out for the skeleton.
+                    skeleton.setAttribute('data-hidden', 'true');
+                }
+                
+                // Important: Clean up the listener after it has done its job
+                // to prevent it from running again accidentally.
+                window.removeEventListener('message', handleCalendlyLoad);
+            }
         });
     </script>
-    <script src="../app.js"></script>
 </body>
 </html>
