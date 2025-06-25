@@ -686,7 +686,8 @@ section {
 .calendly-placeholder {
     position: relative;
     width: 100%;
-    padding-top: 115%;
+    height: 1000px; /* A fixed height is more reliable for the embed */
+    max-height: 90vh; /* Prevent overflow on short screens */
     background-color: var(--color-surface);
     border-radius: 16px;
     overflow: hidden;
@@ -709,7 +710,7 @@ section {
     top: 0; left: 0; width: 100%; height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 32px 48px;
+    padding: 24px; /* Simplified padding */
     z-index: 1;
     opacity: 1;
     transition: opacity 0.4s ease-out;
@@ -799,3 +800,13 @@ section {
 }
 
 /* Remove .calendly-inline-widget absolute/opacity rules (Calendly handles its own iframe) */
+
+/* Responsive additions for scheduling */
+@media (max-width: 768px) {
+    .schedule-page-container {
+        padding: 80px 16px 40px 16px;
+    }
+    .calendly-placeholder {
+        height: 1100px; /* Give it more height on mobile where width is constrained */
+    }
+}
