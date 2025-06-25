@@ -19,37 +19,41 @@
         </div>
     </nav>
     <section class="container" style="margin-top: 100px; max-width: 600px;">
-        <h1>Share Your Story</h1>
-        <form id="testimonial-form" style="display: flex; flex-direction: column; gap: 24px;">
+        <h1 style="font-size: 2.2rem; margin-bottom: 32px; letter-spacing: -0.5px; color: var(--brand-primary);">Share Your Story</h1>
+        <form id="testimonial-form" style="display: flex; flex-direction: column; gap: 36px; background: var(--color-surface); border-radius: 16px; box-shadow: var(--shadow-md); padding: 40px 32px 48px 32px;">
             <!-- Part 1: The Testimonial -->
-            <div>
-                <label for="client-name"><strong>Client Name</strong></label><br>
-                <input type="text" id="client-name" name="client-name" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;">
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <label for="client-name" style="font-size: 1.1rem; font-weight: 600; color: var(--brand-primary);">Client Name</label>
+                <input type="text" id="client-name" name="client-name" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1rem;">
             </div>
-            <div>
-                <label for="story"><strong>Your Story</strong></label>
-                <p style="font-size: 0.95em; color: #4A5568; margin-top: 4px;">Could you share a brief story (2-3 paragraphs) about your experience? Please touch on the challenge you faced before we worked together and how the AI-related explanations or coaching helped you overcome it.</p>
-                <textarea id="story" name="story" rows="7" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;"></textarea>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <label for="story" style="font-size: 1.1rem; font-weight: 600; color: var(--brand-primary);">Your Story</label>
+                <p style="font-size: 1rem; color: var(--brand-secondary); margin: 0 0 4px 0;">Could you share a brief story (2-3 paragraphs) about your experience? Please touch on the challenge you faced before we worked together and how the AI-related explanations or coaching helped you overcome it.</p>
+                <textarea id="story" name="story" rows="7" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1rem;"></textarea>
             </div>
             <!-- Part 2: Permission & References -->
-            <div>
-                <label><strong>Public Use Consent</strong></label>
-                <p style="font-size: 0.95em; color: #4A5568; margin-top: 4px;">Are you comfortable with me sharing your testimonial on my website, social media, or in other marketing materials? You can choose how you'd like to be identified.</p>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <label style="font-size: 1.1rem; font-weight: 600; color: var(--brand-primary);">Public Use Consent</label>
+                <p style="font-size: 1rem; color: var(--brand-secondary); margin: 0 0 4px 0;">Are you comfortable with me sharing your testimonial on my website, social media, or in other marketing materials? You can choose how you'd like to be identified.</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label><input type="radio" name="public-consent" value="full-name" required> Yes, you can use my full name (e.g., Jane Doe).</label>
-                    <label><input type="radio" name="public-consent" value="first-initial"> Yes, but please only use my first name and last initial (e.g., Jane D.).</label>
-                    <label><input type="radio" name="public-consent" value="anonymous"> Yes, but I prefer to remain anonymous.</label>
+                    <label style="font-size: 1rem;"><input type="radio" name="public-consent" value="full-name" required> Yes, you can use my full name (e.g., Jane Doe).</label>
+                    <label style="font-size: 1rem;"><input type="radio" name="public-consent" value="first-initial"> Yes, but please only use my first name and last initial (e.g., Jane D.).</label>
+                    <label style="font-size: 1rem;"><input type="radio" name="public-consent" value="anonymous"> Yes, but I prefer to remain anonymous.</label>
                 </div>
             </div>
-            <div>
-                <label><strong>Reference Consent</strong></label>
-                <p style="font-size: 0.95em; color: #4A5568; margin-top: 4px;">Occasionally, a potential new client is interested in speaking directly with someone I've worked with. Would you be open to being a reference in the future? This would involve a brief, informal chat about your experience.</p>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <label style="font-size: 1.1rem; font-weight: 600; color: var(--brand-primary);">Reference Consent</label>
+                <p style="font-size: 1rem; color: var(--brand-secondary); margin: 0 0 4px 0;">Occasionally, a potential new client is interested in speaking directly with someone I've worked with. Would you be open to being a reference in the future? This would involve a brief, informal chat about your experience.</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label><input type="radio" name="reference-consent" value="yes" required> Yes, I'd be happy to be a reference. You can share my preferred contact information with serious potential clients.</label>
-                    <label><input type="radio" name="reference-consent" value="no"> Not at this time.</label>
+                    <label style="font-size: 1rem;"><input type="radio" name="reference-consent" value="yes" required> Yes, I'd be happy to be a reference. You can share my preferred contact information with serious potential clients.</label>
+                    <label style="font-size: 1rem;"><input type="radio" name="reference-consent" value="no"> Not at this time.</label>
+                </div>
+                <div id="contact-info-field" style="display: none; flex-direction: column; gap: 8px; margin-top: 8px;">
+                    <label for="contact-info" style="font-size: 1rem; color: var(--brand-primary);">Preferred Contact Info (email or phone)</label>
+                    <input type="text" id="contact-info" name="contact-info" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1rem;">
                 </div>
             </div>
-            <button type="submit" class="btn btn--primary btn--lg" style="margin-top: 16px;">Submit Testimonial</button>
+            <button type="submit" class="btn btn--primary btn--lg" style="margin-top: 16px; margin-bottom: 48px;">Submit Testimonial</button>
         </form>
     </section>
     <footer class="footer">
@@ -59,6 +63,27 @@
             </div>
         </div>
     </footer>
+    <script>
+    // Show/hide contact info field based on reference consent
+    document.addEventListener('DOMContentLoaded', function() {
+        const yesRadio = document.querySelector('input[name="reference-consent"][value="yes"]');
+        const noRadio = document.querySelector('input[name="reference-consent"][value="no"]');
+        const contactField = document.getElementById('contact-info-field');
+        const contactInput = document.getElementById('contact-info');
+        function updateContactField() {
+            if (yesRadio.checked) {
+                contactField.style.display = 'flex';
+                contactInput.required = true;
+            } else {
+                contactField.style.display = 'none';
+                contactInput.required = false;
+            }
+        }
+        yesRadio.addEventListener('change', updateContactField);
+        noRadio.addEventListener('change', updateContactField);
+        updateContactField();
+    });
+    </script>
     <script src="../app.js"></script>
 </body>
 </html>
