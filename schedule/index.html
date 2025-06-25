@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- Your standard navigation bar -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main Navigation">
         <div class="container">
             <div class="nav-brand">
                 <a href="https://home.samuelholley.com"><img src="../phoenix-transparent.png" alt="Samuel Holley AI Consulting Logo" style="height: 50px;"></a>
@@ -21,7 +21,7 @@
     </nav>
 
     <!-- Main Content Area -->
-    <main class="schedule-page-container">
+    <main class="schedule-page-container" role="main" tabindex="-1">
         <div class="section-header">
             <h1>Book Your Free AI Audit</h1>
             <p class="section-subtitle">Choose a time that works for you below.</p>
@@ -30,7 +30,7 @@
         <!-- The new, high-quality Calendly embed -->
         <div class="calendly-placeholder">
             <!-- v5: High-Fidelity Loading Skeleton -->
-            <div class="skeleton-loader">
+            <div class="skeleton-loader" aria-live="polite" aria-busy="true">
                 <!-- Month/Year Header -->
                 <div class="skeleton-header">
                     <div class="skeleton-shape skeleton-line" style="width: 35%; height: 28px;"></div>
@@ -38,20 +38,20 @@
                 
                 <!-- Month Navigation -->
                 <div class="skeleton-month-nav">
-                    <div class="skeleton-shape skeleton-nav-arrow"></div>
+                    <div class="skeleton-shape skeleton-nav-arrow" aria-hidden="true"></div>
                     <div class="skeleton-shape skeleton-line" style="width: 25%; height: 20px;"></div>
-                    <div class="skeleton-shape skeleton-nav-arrow"></div>
+                    <div class="skeleton-shape skeleton-nav-arrow" aria-hidden="true"></div>
                 </div>
 
                 <!-- Days of the Week -->
                 <div class="skeleton-weekdays">
-                    <div class="skeleton-shape skeleton-weekday"></div>
-                    <div class="skeleton-shape skeleton-weekday"></div>
-                    <div class="skeleton-shape skeleton-weekday"></div>
-                    <div class="skeleton-shape skeleton-weekday"></div>
-                    <div class="skeleton-shape skeleton-weekday"></div>
-                    <div class="skeleton-shape skeleton-weekday"></div>
-                    <div class="skeleton-shape skeleton-weekday"></div>
+                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
+                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
+                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
+                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
+                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
+                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
+                    <div class="skeleton-shape skeleton-weekday" aria-hidden="true"></div>
                 </div>
 
                 <!-- Calendar Grid (Now populated by script at the end of the body) -->
@@ -65,12 +65,12 @@
             </div>
 
             <!-- The Calendly Widget (hidden by default) -->
-            <div id="calendly-embed"></div>
+            <div id="calendly-embed" aria-label="Calendly Scheduling Widget"></div>
         </div>
     </main>
     
     <!-- Your standard footer -->
-    <footer class="footer">
+    <footer class="footer" aria-label="Site Footer">
         <div class="container">
             <div class="footer-bottom">
                 <p>© 2025 Samuel Holley | AI Consulting. All rights reserved.</p>
