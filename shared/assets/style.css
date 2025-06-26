@@ -693,11 +693,12 @@ section {
 .calendly-placeholder {
     position: relative;
     width: 100%;
-    min-height: 800px; /* Increased to accommodate full content */
+    min-height: 850px; /* Increased to prevent bottom cutoff */
     background-color: var(--color-surface);
     border-radius: 16px;
     overflow: visible; /* Changed from hidden to allow Calendly to expand */
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
+    padding-bottom: 20px; /* Add bottom padding to prevent cutoff */
 }
 
 #calendly-embed {
@@ -715,10 +716,11 @@ section {
 
 .skeleton-loader {
     position: absolute;
-    top: 0; left: 0; 
+    top: 0; 
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
     width: 70%; /* Match Calendly's ~70% width usage */
     height: 70%; /* Match Calendly's ~70% height usage */
-    margin: 15% auto; /* Center the skeleton content */
     display: flex;
     flex-direction: column;
     padding: 32px 48px;
@@ -830,14 +832,16 @@ section {
         padding: 80px 16px 40px 16px;
     }
     .calendly-placeholder {
-        min-height: 900px; /* Increased for mobile to accommodate content */
+        min-height: 950px; /* Increased for mobile to prevent cutoff */
+        padding-bottom: 30px; /* Extra bottom padding on mobile */
     }
     #calendly-embed {
         min-height: 800px; /* Larger min-height for mobile Calendly content */
     }
     .skeleton-loader {
         width: 85%; /* Slightly wider on mobile */
-        margin: 10% auto; /* Adjust margins for mobile */
         padding: 24px 32px; /* Reduce padding on mobile */
+        left: 50%; /* Ensure centering on mobile */
+        transform: translateX(-50%); /* Ensure centering on mobile */
     }
 }

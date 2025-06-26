@@ -197,7 +197,7 @@ function initializeCalendly() {
                 setTimeout(() => {
                     if (placeholder) {
                         placeholder.style.height = 'auto';
-                        placeholder.style.minHeight = '800px'; // Match new container size
+                        placeholder.style.minHeight = '850px'; /* Increased to prevent cutoff */
                     }
                 }, 500);
             }
@@ -207,12 +207,12 @@ function initializeCalendly() {
                 const placeholder = document.querySelector('.calendly-placeholder');
                 const embed = document.getElementById('calendly-embed');
                 if (placeholder && embed && e.data.payload && typeof e.data.payload.height === 'number') {
-                    const newHeight = Math.max(e.data.payload.height, 800); // Increased minimum to match container
+                    const newHeight = Math.max(e.data.payload.height + 40, 850); // Add 40px buffer and increased minimum
                     placeholder.style.height = `${newHeight}px`;
                     placeholder.style.minHeight = `${newHeight}px`;
                     // Remove any height constraints from the embed to let it expand naturally
-                    embed.style.height = `${newHeight}px`;
-                    embed.style.minHeight = `${newHeight}px`;
+                    embed.style.height = `${newHeight - 20}px`; // Slightly less to account for container padding
+                    embed.style.minHeight = `${newHeight - 20}px`;
                     
                     console.log('Calendly height changed to:', newHeight); // Debug log
                 }
