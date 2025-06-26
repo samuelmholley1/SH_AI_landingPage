@@ -696,13 +696,13 @@ section {
 .calendly-placeholder {
     position: relative;
     width: 100%;
-    max-width: 900px;
+    max-width: 450px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 12px;
     background: #fff;
-    border-radius: 16px;
+    border-radius: 12px;
     box-shadow: 0 4px 24px rgba(26,54,93,.05);
-    min-height: 620px;
+    min-height: 310px;
 }
 
 /*
@@ -715,8 +715,8 @@ section {
     z-index: 10;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    min-height: 620px;
+    gap: 8px;
+    min-height: 310px;
 }
 
 /*
@@ -724,9 +724,8 @@ section {
   only when JS gives it a height.
 */
 #calendly-embed {
-    min-width: 320px;
+    min-width: 220px;
     width: 100%;
-    /* height removed to allow Calendly to auto-size */
 }
 
 /* =================================================================
@@ -780,6 +779,8 @@ section {
 .skeleton-header .skeleton-shape {
     background: linear-gradient(90deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
     opacity: 0.15; /* Subtle brand presence */
+    height: 18px !important;
+    border-radius: 4px;
 }
 
 /* --- Month Navigation --- */
@@ -791,8 +792,8 @@ section {
     padding: 0 8px;
 }
 .skeleton-nav-arrow {
-    width: 28px; /* Slightly larger */
-    height: 28px;
+    width: 18px !important;
+    height: 18px !important;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--brand-accent) 0%, #E0540B 100%);
     opacity: 0.2; /* Subtle brand accent */
@@ -801,36 +802,37 @@ section {
 .skeleton-month-nav .skeleton-line {
     background: linear-gradient(90deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
     opacity: 0.2;
+    height: 14px !important;
 }
 
 /* --- Weekdays --- */
 .skeleton-weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px; /* Slightly more spacing */
-    margin-bottom: 12px;
-    padding: 0 4px;
+    gap: 4px;
+    margin-bottom: 6px;
+    padding: 0 2px;
 }
 .skeleton-weekday {
-    height: 18px; /* Slightly taller */
+    height: 10px !important;
     width: 75%;
     margin: 0 auto;
     background: linear-gradient(90deg, var(--brand-secondary) 0%, var(--brand-primary) 100%);
     opacity: 0.25; /* Subtle brand presence */
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 /* --- Calendar Grid --- */
 .skeleton-calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px; /* More spacious */
+    gap: 4px;
     flex-grow: 1;
     padding: 0 4px;
 }
 .skeleton-date-box {
-    aspect-ratio: 1 / 1; /* Make them square */
-    border-radius: 8px; /* More rounded for modern feel */
+    height: 18px !important;
+    border-radius: 3px;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     border: 1px solid rgba(26, 54, 93, 0.08); /* Subtle border */
     position: relative;
@@ -873,6 +875,7 @@ section {
     opacity: 0.2;
     border-radius: 6px;
     width: 100%; /* Ensure full width */
+    height: 12px !important;
 }
 
 /* --- Animation --- */
@@ -895,7 +898,9 @@ section {
         padding: 80px 16px 40px 16px;
     }
     .calendly-placeholder {
-        padding: 16px 16px 50px 16px; /* Consistent flexible padding for mobile */
+        padding: 4px;
+        max-width: 98vw;
+        min-height: 180px;
     }
     .skeleton-loader {
         width: 85%; /* Slightly wider on mobile */
@@ -903,6 +908,9 @@ section {
         left: 50%; /* Ensure centering on mobile */
         transform: translateX(-50%); /* Ensure centering on mobile */
         top: 36px; /* Adjust for new container padding */
+    }
+    #calendly-embed {
+        min-width: 120px;
     }
 }
 
