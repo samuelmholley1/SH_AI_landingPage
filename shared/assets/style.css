@@ -696,14 +696,14 @@ section {
     min-height: 560px; /* Reduced from 700px - 20% smaller for skeleton */
     background-color: var(--color-surface);
     border-radius: 16px;
-    overflow: hidden;
+    overflow: visible; /* Changed from hidden to allow Calendly to expand */
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
 }
 
 #calendly-embed {
-    position: relative; /* Changed from absolute to relative */
     width: 100%;
-    min-height: 700px; /* Explicit min-height for Calendly iframe */
+    height: auto; /* Let Calendly determine its own height */
+    min-height: 700px; /* Minimum fallback height */
     z-index: 2;
     opacity: 0;
     transition: opacity 0.5s 0.1s ease-in-out;
@@ -810,6 +810,16 @@ section {
 }
 
 /* Remove .calendly-inline-widget absolute/opacity rules (Calendly handles its own iframe) */
+/* Ensure Calendly widget can expand properly */
+.calendly-inline-widget {
+    height: auto !important;
+    min-height: 700px !important;
+}
+
+.calendly-inline-widget iframe {
+    height: auto !important;
+    min-height: 700px !important;
+}
 
 /* Responsive additions for scheduling */
 @media (max-width: 768px) {
