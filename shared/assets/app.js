@@ -159,16 +159,16 @@ function initializeFloatingElements() {
  * Initializes the Calendly skeleton loader and embed
  */
 function initializeCalendly() {
-  const skeleton = document.getElementById('cal-skeleton');
-  const embed    = document.getElementById('calendly-embed');
+    const skeleton = document.querySelector('.skeleton-loader');
+    const embedDiv = document.getElementById('calendly-embed');
+    if (!skeleton || !embedDiv) { return; }
 
-  /** Wait until Calendly has injected its <iframe> */
-  (function poll () {
-    const iframe = embed.querySelector('iframe');
-    if (!iframe) return requestAnimationFrame(poll);
-
-    iframe.addEventListener('load', () => skeleton && skeleton.remove());
-  })();
+    // Wait until Calendly has injected its <iframe>
+    (function poll () {
+        const iframe = embedDiv.querySelector('iframe');
+        if (!iframe) { return requestAnimationFrame(poll); }
+        iframe.addEventListener('load', () => skeleton.remove());
+    })();
 }
 
 
