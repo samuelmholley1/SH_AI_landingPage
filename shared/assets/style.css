@@ -710,17 +710,15 @@ section {
 */
 .skeleton-loader {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--color-surface, #fff);
-    z-index: 10;
-    padding: 20px;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: var(--color-surface, #fff);
+    padding: 20px;
 }
 
 /*
@@ -729,8 +727,8 @@ section {
 */
 #calendly-embed {
     min-width: 320px;
-    height: 700px;
     width: 100%;
+    /* height removed to allow Calendly to auto-size */
 }
 
 /* =================================================================
