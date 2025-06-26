@@ -173,32 +173,26 @@ function initializeCalendly() {
         }
     }
 
-    // 2. Initially hide the Calendly embed
+    // Select the key elements
+    const skeleton = document.querySelector('.skeleton-loader');
     const embed = document.getElementById('calendly-embed');
-    if (embed) {
-        embed.style.display = 'none';
+
+    if (!skeleton || !embed) {
+        console.error('Calendly elements for swap not found.');
+        return;
     }
 
-    // 3. Listen for Calendly messages
-    window.addEventListener('message', function handleCalendlyEvents(e) {
-        if (e.origin !== "https://calendly.com" || !e.data.event) {
-            return;
-        }
+    // This function removes the skeleton and the hiding class from the embed
+    function showCalendly() {
+        skeleton.remove();
+        embed.classList.remove('visually-hidden');
+    }
 
-        // When Calendly is ready, replace skeleton with embed
-        if (e.data.event === 'calendly.event_type_viewed') {
-            const skeleton = document.querySelector('.skeleton-loader');
-            const embed = document.getElementById('calendly-embed');
-            
-            // Remove skeleton from DOM
-            if (skeleton) {
-                skeleton.remove();
-            }
-            
-            // Show Calendly embed
-            if (embed) {
-                embed.style.display = 'block';
-            }
+    // 2. Listen for the message from the now-correctly-loaded Calendly iframe
+    window.addEventListener('message', function handleCalendlyEvents(e) {
+        if (e.origin === "https://calendly.com" && e.data.event === 'calendly.event_type_viewed') {
+            // Once Calendly's UI is ready, perform the swap.
+            showCalendly();
         }
     });
 }

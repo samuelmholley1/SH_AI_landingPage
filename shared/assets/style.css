@@ -910,3 +910,16 @@ section {
         top: 36px; /* Adjust for new container padding */
     }
 }
+
+/*
+  A utility class to visually hide an element but keep it accessible
+  and allow its content (like iframes) to load.
+*/
+.visually-hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
