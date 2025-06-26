@@ -197,7 +197,7 @@ function initializeCalendly() {
                 setTimeout(() => {
                     if (placeholder) {
                         placeholder.style.height = 'auto';
-                        placeholder.style.minHeight = '700px';
+                        placeholder.style.minHeight = '800px'; // Match new container size
                     }
                 }, 500);
             }
@@ -207,7 +207,7 @@ function initializeCalendly() {
                 const placeholder = document.querySelector('.calendly-placeholder');
                 const embed = document.getElementById('calendly-embed');
                 if (placeholder && embed && e.data.payload && typeof e.data.payload.height === 'number') {
-                    const newHeight = Math.max(e.data.payload.height, 700); // Increased minimum
+                    const newHeight = Math.max(e.data.payload.height, 800); // Increased minimum to match container
                     placeholder.style.height = `${newHeight}px`;
                     placeholder.style.minHeight = `${newHeight}px`;
                     // Remove any height constraints from the embed to let it expand naturally
