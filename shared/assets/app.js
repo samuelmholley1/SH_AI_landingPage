@@ -159,7 +159,7 @@ function initializeFloatingElements() {
  * Initializes the Calendly skeleton loader and embed
  */
 function initializeCalendly() {
-    // The skeleton creation code is fine.
+    // This skeleton creation code is fine.
     const grid = document.querySelector('.skeleton-calendar-grid');
     if (grid) {
         for (let i = 0; i < 35; i++) {
@@ -173,7 +173,7 @@ function initializeCalendly() {
         }
     }
 
-    // --- The Definitive Event-Driven Solution ---
+    // --- The Final, Correct Event-Driven Logic ---
 
     const skeleton = document.querySelector('.skeleton-loader');
     const embedDiv = document.getElementById('calendly-embed');
@@ -182,30 +182,33 @@ function initializeCalendly() {
         return; // Exit if elements are missing
     }
 
-    // This is the function that will handle the swap.
-    function handleCalendlyReady(e) {
-        // We only care about the "event type viewed" event from Calendly.
-        if (
-            e.origin === "https://calendly.com" &&
-            e.data.event === 'calendly.event_type_viewed'
-        ) {
-            // 1. Hide the skeleton.
-            skeleton.style.display = 'none';
+    // A flag to ensure we only hide the skeleton once.
+    let isSkeletonHidden = false;
 
-            // 2. Release the height constraint on our container.
-            //    'auto' allows the container to grow to fit its content.
-            //    The Calendly iframe will now be visible and its full height will be respected.
-            embedDiv.style.height = 'auto';
-
-            // 3. (Important) Remove this event listener so it doesn't run again.
-            window.removeEventListener('message', handleCalendlyReady);
+    // Create a single, persistent listener that is NEVER removed.
+    window.addEventListener('message', function(e) {
+        // Ignore any messages that are not from Calendly.
+        if (e.origin !== "https://calendly.com") {
+            return;
         }
-    }
 
-    // Start listening for the "ready" signal from Calendly.
-    window.addEventListener('message', handleCalendlyReady);
+        // --- Task 1: Handle the one-time reveal ---
+        // This uses the "I'm ready" event.
+        if (e.data.event === 'calendly.event_type_viewed' && !isSkeletonHidden) {
+            skeleton.style.display = 'none';
+            isSkeletonHidden = true; // Set the flag so this never runs again.
+        }
 
-    // Initialize the widget. This will now successfully trigger the event listener.
+        // --- Task 2: Handle all height adjustments ---
+        // This uses the "I've resized" event.
+        if (e.data.event === 'calendly.height_changed' && e.data.payload?.height) {
+            // This event gives us the exact height Calendly needs.
+            // We apply it directly to our container.
+            embedDiv.style.height = e.data.payload.height + 'px';
+        }
+    });
+
+    // Start the process.
     Calendly.initInlineWidget({
         url: 'https://calendly.com/samuelholleyai/30min',
         parentElement: embedDiv
