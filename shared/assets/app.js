@@ -159,7 +159,7 @@ function initializeFloatingElements() {
  * Initializes the Calendly skeleton loader and embed
  */
 function initializeCalendly() {
-    // This skeleton creation code is fine.
+    // This part, which builds the skeleton, is correct and can stay.
     const grid = document.querySelector('.skeleton-calendar-grid');
     if (grid) {
         for (let i = 0; i < 35; i++) {
@@ -173,42 +173,53 @@ function initializeCalendly() {
         }
     }
 
-    // --- The Final, Correct Event-Driven Logic ---
+    // --- The Final, Corrected Event-Driven Logic ---
 
     const skeleton = document.querySelector('.skeleton-loader');
     const embedDiv = document.getElementById('calendly-embed');
 
     if (!skeleton || !embedDiv) {
+        console.error("Could not find skeleton or embed elements.");
         return; // Exit if elements are missing
     }
 
-    // A flag to ensure we only hide the skeleton once.
-    let isSkeletonHidden = false;
+    // A flag to ensure the initial reveal happens only once.
+    let isCalendlyVisible = false;
 
-    // Create a single, persistent listener that is NEVER removed.
-    window.addEventListener('message', function(e) {
-        // Ignore any messages that are not from Calendly.
+    // Create a single, persistent listener for all messages from Calendly.
+    window.addEventListener('message', function handleCalendlyEvents(e) {
+        // We only care about messages from Calendly's domain.
         if (e.origin !== "https://calendly.com") {
             return;
         }
 
-        // --- Task 1: Handle the one-time reveal ---
-        // This uses the "I'm ready" event.
-        if (e.data.event === 'calendly.event_type_viewed' && !isSkeletonHidden) {
+        // --- Task 1: The Initial Reveal ---
+        // We use 'event_type_viewed' as the trigger to show the widget for the first time.
+        if (e.data.event === 'calendly.event_type_viewed' && !isCalendlyVisible) {
+            
+            // Set the flag to true so this block never runs again.
+            isCalendlyVisible = true;
+
+            // Hide the skeleton loader.
             skeleton.style.display = 'none';
-            isSkeletonHidden = true; // Set the flag so this never runs again.
+
+            // IMPORTANT: Give the embed a default height to break the deadlock
+            // and make it visible immediately.
+            embedDiv.style.height = '700px'; 
         }
 
-        // --- Task 2: Handle all height adjustments ---
-        // This uses the "I've resized" event.
+        // --- Task 2: Continuous Height Adjustment ---
+        // We use 'height_changed' to perfectly resize the container.
+        // This will run immediately after the reveal and on any subsequent resizes.
         if (e.data.event === 'calendly.height_changed' && e.data.payload?.height) {
-            // This event gives us the exact height Calendly needs.
-            // We apply it directly to our container.
+            
+            // Apply the exact height that Calendly requests.
+            // This will override our default 700px and make it pixel-perfect.
             embedDiv.style.height = e.data.payload.height + 'px';
         }
     });
 
-    // Start the process.
+    // Start the process by initializing the widget.
     Calendly.initInlineWidget({
         url: 'https://calendly.com/samuelholleyai/30min',
         parentElement: embedDiv
