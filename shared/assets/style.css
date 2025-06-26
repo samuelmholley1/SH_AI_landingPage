@@ -695,7 +695,7 @@ section {
 */
 .calendly-placeholder {
     width: 100%;
-    max-width: 900px; /* Or whatever you prefer */
+    max-width: 900px;
     margin: 0 auto;
     background-color: var(--color-surface);
     border-radius: 16px;
@@ -723,16 +723,15 @@ section {
     box-sizing: border-box;
 }
 
-/*
-  The Calendly Embed Div. THIS IS THE KEY.
-  It should start with no height, and we'll add a smooth transition
-  for when the JavaScript resizes it.
+/* 
+  The embed starts with zero height and becomes visible 
+  only when JS gives it a height.
 */
 #calendly-embed {
     width: 100%;
-    height: 0; /* Start with zero height */
-    overflow: hidden; /* Prevent any temporary scrollbars */
-    transition: height 0.5s ease; /* Animate the height change smoothly */
+    height: 0;
+    overflow: hidden;
+    /* NO transition, as it can interfere with script-based resizing */
 }
 
 /* =================================================================

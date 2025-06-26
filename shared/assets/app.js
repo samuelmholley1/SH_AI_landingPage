@@ -159,7 +159,7 @@ function initializeFloatingElements() {
  * Initializes the Calendly skeleton loader and embed
  */
 function initializeCalendly() {
-    // This skeleton-building code is correct and can remain.
+    // The skeleton creation code is fine.
     const grid = document.querySelector('.skeleton-calendar-grid');
     if (grid) {
         for (let i = 0; i < 35; i++) {
@@ -173,51 +173,39 @@ function initializeCalendly() {
         }
     }
 
-    // --- The Definitive Event Listener Logic ---
+    // --- The Simplified, Definitive Event Listener ---
 
     const skeleton = document.querySelector('.skeleton-loader');
     const embedDiv = document.getElementById('calendly-embed');
 
     if (!skeleton || !embedDiv) {
-        console.error("Could not find the necessary elements for the Calendly swap.");
-        return;
+        return; // Exit if elements are missing
     }
 
     // A flag to ensure we only hide the skeleton once.
     let isSkeletonHidden = false;
 
-    // Listen for messages from the Calendly iframe
+    // Listen for messages from Calendly
     window.addEventListener('message', function(e) {
-        // We only care about messages from Calendly
-        if (e.origin !== "https://calendly.com") {
-            return;
-        }
-
-        // The FIRST time we get ANY valid event from Calendly, we show the embed.
-        // `event_type_viewed` is the most reliable first event.
-        if (e.data.event && e.data.event === 'calendly.event_type_viewed' && !isSkeletonHidden) {
-            skeleton.style.display = 'none'; // Hide the skeleton
-            // Give the embed an initial, reasonable height to expand into.
-            embedDiv.style.height = '700px'; 
-            isSkeletonHidden = true; // Set the flag
-        }
-
-        // AFTER the embed is visible, we listen for height changes to resize it perfectly.
-        if (e.data.event && e.data.event === 'calendly.height_changed') {
-            // If the skeleton is still somehow visible, hide it.
+        // We only care about height change events from Calendly
+        if (
+            e.origin === "https://calendly.com" &&
+            e.data.event === 'calendly.height_changed' &&
+            e.data.payload?.height
+        ) {
+            // If the skeleton hasn't been hidden yet, hide it now.
             if (!isSkeletonHidden) {
                 skeleton.style.display = 'none';
                 isSkeletonHidden = true;
             }
-            
-            // Apply the exact height from Calendly's message.
-            if (embedDiv && e.data.payload?.height) {
-                embedDiv.style.height = e.data.payload.height + 'px';
-            }
+
+            // THE ONLY THING THAT MATTERS:
+            // Every time we get a height event, apply that height to our div.
+            embedDiv.style.height = e.data.payload.height + 'px';
         }
     });
 
-    // Start the process. This will now successfully trigger the `event_type_viewed` event.
+    // Start the process. This will cause the first `height_changed` event to fire.
     Calendly.initInlineWidget({
         url: 'https://calendly.com/samuelholleyai/30min',
         parentElement: embedDiv
