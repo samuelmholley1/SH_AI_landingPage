@@ -175,38 +175,25 @@ function initializeCalendly() {
 
     // 2. Listen for messages from the Calendly iframe.
     window.addEventListener('message', function handleCalendlyEvents(e) {
-        // We only care about events from Calendly.
-        if (e.origin !== "https://calendly.com") {
+        if (e.origin !== "https://calendly.com" || !e.data.event) {
             return;
         }
-        
-        const placeholder = document.querySelector('.calendly-placeholder'); // Get the placeholder once
 
-        if (e.data.event) {
-            // When the initial view is ready, hide the skeleton and show the embed.
-            if (e.data.event === 'calendly.event_type_viewed') {
-                const embed = document.getElementById('calendly-embed');
-                const skeleton = document.querySelector('.skeleton-loader');
-                
-                // Set a temporary height to prevent a "jump"
-                if (placeholder) {
-                    placeholder.style.height = '700px'; 
-                }
+        const placeholder = document.querySelector('.calendly-placeholder');
+        if (!placeholder) return;
 
-                if (embed) {
-                    embed.setAttribute('data-loaded', 'true');
-                }
-                if (skeleton) {
-                    skeleton.setAttribute('data-hidden', 'true');
-                }
-            }
+        // On first view, show the embed
+        if (e.data.event === 'calendly.event_type_viewed') {
+            document.getElementById('calendly-embed')?.setAttribute('data-loaded', 'true');
+            document.querySelector('.skeleton-loader')?.setAttribute('data-hidden', 'true');
+        }
 
-            // --- THIS IS THE NEW, IMPORTANT PART ---
-            if (e.data.event === 'calendly.height_changed') {
-                if (placeholder && e.data.payload?.height) {
-                    // Set the final, perfect height
-                    placeholder.style.height = (e.data.payload.height + 40) + 'px';
-                }
+        // On any height change, resize the container
+        if (e.data.event === 'calendly.height_changed') {
+            if (e.data.payload?.height) {
+                // Set the container height directly.
+                // This overrides the CSS `min-height` because inline styles have higher specificity.
+                placeholder.style.height = e.data.payload.height + 'px';
             }
         }
     });

@@ -689,26 +689,37 @@ section {
     margin: 0 auto;
 }
 
-/* --- THE RESPONSIVE CONTAINER (FLEXIBLE HEIGHT) --- */
+/*
+  The Stage: Satisfies Conflict #1 (Stable Loading State)
+  - Has position: relative to be a container for absolute children.
+  - Has a `min-height` that is large enough to contain the skeleton loader.
+  - Has a `transition` to smoothly animate the height change later.
+*/
 .calendly-placeholder {
     position: relative;
     width: 100%;
-    min-height: 600px; /* RE-ADD THIS to contain the skeleton visually */
+    min-height: 650px; /* A good default height for the skeleton. */
     background-color: var(--color-surface);
     border-radius: 16px;
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
     padding: 20px;
-    transition: height 0.4s ease; /* This is good, keep it */
+    transition: height 0.4s ease;
 }
 
+/*
+  The Calendly Embed: Satisfies Conflict #3 (iframe Loading)
+  - Absolutely positioned to occupy the same space as the skeleton.
+  - `opacity: 0` makes it invisible but still part of the render tree, so it loads.
+  - `height: 100%` makes it fill its parent (the stage).
+*/
 #calendly-embed {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* RE-ADD THIS to make the embed fill the container */
+    height: 100%; /* Fills the placeholder */
     border: 0;
-    z-index: 1;
+    z-index: 1; /* Starts underneath the skeleton */
     opacity: 0;
     transition: opacity 0.5s 0.1s ease-in-out;
     pointer-events: none;
@@ -720,14 +731,19 @@ section {
     pointer-events: auto; /* Make it clickable */
 }
 
+/*
+  The Skeleton: Our initial visible element.
+  - Absolutely positioned inside the stage.
+  - Centered perfectly.
+*/
 .skeleton-loader {
-    position: absolute; /* Position it relative to the placeholder */
-    top: 40px;          /* Give it some space from the top */
+    position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%); /* The correct way to center an absolute element */
-    width: 80%;         /* Adjust width as needed */
-    max-width: 600px;   /* Prevent it from getting too wide on large screens */
-    z-index: 2;         /* Ensure it's on top initially */
+    transform: translate(-50%, -50%); /* Better centering */
+    width: 80%;
+    max-width: 550px;
+    z-index: 2; /* On top initially */
     opacity: 1;
     transition: opacity 0.4s ease-out;
 
@@ -739,7 +755,7 @@ section {
     border: 1px solid var(--color-border);
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(26, 54, 93, 0.08);
-    box-sizing: border-box; /* Explicitly add this to be safe */
+    box-sizing: border-box;
 }
 
 /* When the skeleton should be hidden, fade it out and make it unclickable */
