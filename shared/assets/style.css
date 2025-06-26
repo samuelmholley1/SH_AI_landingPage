@@ -693,7 +693,7 @@ section {
 .calendly-placeholder {
     position: relative;
     width: 100%;
-    padding-top: 95%; /* UPDATED: Reduced from 115% to contain skeleton */
+    min-height: 700px; /* A minimum height to ensure the container has a size */
     background-color: var(--color-surface);
     border-radius: 16px;
     overflow: hidden;
@@ -706,6 +706,7 @@ section {
     z-index: 2;
     opacity: 0;
     transition: opacity 0.5s 0.1s ease-in-out;
+    border: 0; /* remove default iframe border */
 }
 #calendly-embed[data-loaded="true"] {
     opacity: 1;
@@ -720,7 +721,6 @@ section {
     z-index: 1;
     opacity: 1;
     transition: opacity 0.4s ease-out;
-    animation: skeleton-flash 1.5s ease-in-out infinite; /* ADDED: Flashing animation */
 }
 
 .skeleton-loader[data-hidden="true"] {
@@ -815,6 +815,6 @@ section {
         padding: 80px 16px 40px 16px;
     }
     .calendly-placeholder {
-        height: 1100px; /* Give it more height on mobile where width is constrained */
+        min-height: 800px; /* ADJUSTED min-height for mobile */
     }
 }
