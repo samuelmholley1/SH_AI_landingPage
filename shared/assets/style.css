@@ -694,10 +694,11 @@ section {
   It will naturally grow as its children grow.
 */
 .calendly-placeholder {
+    position: relative;
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
-    background-color: var(--color-surface);
+    background-color: var(--color-surface, #fff);
     border-radius: 16px;
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
     padding: 20px;
@@ -708,30 +709,28 @@ section {
   This is correct as is.
 */
 .skeleton-loader {
-    width: 100%;
-    max-width: 550px;
-    margin: 0 auto;
-    
-    /* Keep these existing styles */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-surface, #fff);
+    z-index: 10;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    padding: 32px 48px;
-    background: linear-gradient(135deg, var(--brand-white) 0%, var(--brand-light) 100%);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(26, 54, 93, 0.08);
-    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
 }
 
-/* 
+/*
   The embed starts with zero height and becomes visible 
   only when JS gives it a height.
 */
 #calendly-embed {
+    min-width: 320px;
+    height: 700px;
     width: 100%;
-    height: 0;
-    overflow: hidden;
-    /* NO transition, as it can interfere with script-based resizing */
 }
 
 /* =================================================================

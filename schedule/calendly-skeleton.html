@@ -1,0 +1,21 @@
+<!-- ❶ The main wrapper to contain everything -->
+<div class="calendly-placeholder">
+
+  <!-- ❷ Your skeleton, which will act as a full-page overlay -->
+  <div id="skeleton-loader" class="skeleton-loader">
+    <!-- All your existing skeleton HTML elements go here -->
+    <!-- (The header, month nav, weekdays, grid, footer, etc.) -->
+    <!-- Example skeleton content: -->
+    <div class="skeleton-header">Loading...</div>
+    <div class="skeleton-calendar-grid"></div>
+    <div class="skeleton-footer"></div>
+  </div>
+
+  <!-- ❸ The Calendly container. Note data-resize="true" -->
+  <div id="calendly-embed"
+       class="calendly-inline-widget"
+       data-url="https://calendly.com/samuelholleyai/30min"
+       data-resize="true"
+       style="min-width: 320px; height: 700px;">
+  </div>
+</div>
