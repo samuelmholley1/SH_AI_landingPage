@@ -1,0 +1,13 @@
+{
+  "name": "sh-ai-schedule-page",
+  "version": "1.0.0",
+  "description": "Schedule page for Samuel Holley AI Consulting",
+  "scripts": {
+    "build": "mkdir -p public && cp index.html public/ && cp -r ../shared/assets public/",
+    "dev": "python -m http.server 8000",
+    "preview": "cd public && python -m http.server 8080"
+  },
+  "keywords": ["ai", "consulting", "scheduling", "calendly"],
+  "author": "Samuel Holley",
+  "license": "MIT"
+}
