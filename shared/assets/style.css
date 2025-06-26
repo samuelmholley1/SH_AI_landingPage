@@ -691,13 +691,14 @@ section {
 
 /* --- THE RESPONSIVE CONTAINER (FLEXIBLE HEIGHT) --- */
 .calendly-placeholder {
-    position: relative; /* This is the positioning context for its children */
+    position: relative;
     width: 100%;
-    min-height: 750px; /* A height that can accommodate the full Calendly widget */
+    /* min-height is removed to give JS full control */
     background-color: var(--color-surface);
     border-radius: 16px;
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
-    padding: 20px; /* Padding is optional but can be nice */
+    padding: 20px;
+    transition: height 0.4s ease; /* Bonus: Add a smooth transition for the resize */
 }
 
 #calendly-embed {

@@ -179,12 +179,19 @@ function initializeCalendly() {
         if (e.origin !== "https://calendly.com") {
             return;
         }
+        
+        const placeholder = document.querySelector('.calendly-placeholder'); // Get the placeholder once
 
         if (e.data.event) {
             // When the initial view is ready, hide the skeleton and show the embed.
             if (e.data.event === 'calendly.event_type_viewed') {
                 const embed = document.getElementById('calendly-embed');
                 const skeleton = document.querySelector('.skeleton-loader');
+                
+                // Set a temporary height to prevent a "jump"
+                if (placeholder) {
+                    placeholder.style.height = '700px'; 
+                }
 
                 if (embed) {
                     embed.setAttribute('data-loaded', 'true');
@@ -196,9 +203,8 @@ function initializeCalendly() {
 
             // --- THIS IS THE NEW, IMPORTANT PART ---
             if (e.data.event === 'calendly.height_changed') {
-                const placeholder = document.querySelector('.calendly-placeholder');
                 if (placeholder && e.data.payload?.height) {
-                    // Set the container height to the exact height of the widget + some padding
+                    // Set the final, perfect height
                     placeholder.style.height = (e.data.payload.height + 40) + 'px';
                 }
             }
