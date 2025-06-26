@@ -690,64 +690,31 @@ section {
 }
 
 /*
-  The Stage: Satisfies Conflict #1 (Stable Loading State)
-  - Has position: relative to be a container for absolute children.
-  - Has a `min-height` that is large enough to contain the skeleton loader.
-  - Has a `transition` to smoothly animate the height change later.
+  The Main Container. It's just a simple box now.
+  It will naturally grow to fit its content.
 */
 .calendly-placeholder {
-    position: relative;
     width: 100%;
-    min-height: 650px; /* A good default height for the skeleton. */
+    max-width: 900px; /* Give it a max width */
+    margin: 0 auto;   /* Center it */
     background-color: var(--color-surface);
     border-radius: 16px;
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
     padding: 20px;
-    transition: height 0.4s ease;
+    /* NO position, NO min-height */
 }
 
 /*
-  The Calendly Embed: Satisfies Conflict #3 (iframe Loading)
-  - Absolutely positioned to occupy the same space as the skeleton.
-  - `opacity: 0` makes it invisible but still part of the render tree, so it loads.
-  - `height: 100%` makes it fill its parent (the stage).
-*/
-#calendly-embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* Fills the placeholder */
-    border: 0;
-    z-index: 1; /* Starts underneath the skeleton */
-    opacity: 0;
-    transition: opacity 0.5s 0.1s ease-in-out;
-    pointer-events: none;
-}
-/* When Calendly is loaded, make it visible and interactive */
-#calendly-embed[data-loaded="true"] {
-    opacity: 1;
-    z-index: 3; /* Bring it to the front */
-    pointer-events: auto; /* Make it clickable */
-}
-
-/*
-  The Skeleton: Our initial visible element.
-  - Absolutely positioned inside the stage.
-  - Centered perfectly.
+  The Skeleton. A normal block element.
+  It will be removed from the DOM by JavaScript.
 */
 .skeleton-loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Better centering */
-    width: 80%;
+    width: 100%; /* Fill the container */
     max-width: 550px;
-    z-index: 2; /* On top initially */
-    opacity: 1;
-    transition: opacity 0.4s ease-out;
-
-    /* These existing styles are good, keep them */
+    margin: 0 auto; /* Center it */
+    /* NO position: absolute */
+    
+    /* Keep these existing styles */
     display: flex;
     flex-direction: column;
     padding: 32px 48px;
@@ -758,11 +725,13 @@ section {
     box-sizing: border-box;
 }
 
-/* When the skeleton should be hidden, fade it out and make it unclickable */
-.skeleton-loader[data-hidden="true"] {
-    opacity: 0;
-    pointer-events: none;
-    z-index: 1; /* Send it to the back */
+/*
+  The Calendly Embed. It will be added to the DOM by JavaScript.
+  We give it a minimum height to start, which Calendly's script will then override.
+*/
+#calendly-embed {
+    width: 100%;
+    min-height: 700px; /* This is a key instruction for Calendly's script */
 }
 
 /* =================================================================

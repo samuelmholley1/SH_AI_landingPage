@@ -159,13 +159,13 @@ function initializeFloatingElements() {
  * Initializes the Calendly skeleton loader and embed
  */
 function initializeCalendly() {
-    // 1. Immediately build the skeleton grid.
+    // 1. Build the skeleton grid
     const grid = document.querySelector('.skeleton-calendar-grid');
     if (grid) {
         for (let i = 0; i < 35; i++) {
             const cell = document.createElement('div');
             cell.className = 'skeleton-shape skeleton-date-box';
-            cell.style.setProperty('--delay', i); // Add staggered delay for shimmer
+            cell.style.setProperty('--delay', i);
             if (Math.random() > 0.8) {
                 cell.style.opacity = '0.4';
             }
@@ -173,27 +173,31 @@ function initializeCalendly() {
         }
     }
 
-    // 2. Listen for messages from the Calendly iframe.
+    // 2. Initially hide the Calendly embed
+    const embed = document.getElementById('calendly-embed');
+    if (embed) {
+        embed.style.display = 'none';
+    }
+
+    // 3. Listen for Calendly messages
     window.addEventListener('message', function handleCalendlyEvents(e) {
         if (e.origin !== "https://calendly.com" || !e.data.event) {
             return;
         }
 
-        const placeholder = document.querySelector('.calendly-placeholder');
-        if (!placeholder) return;
-
-        // On first view, show the embed
+        // When Calendly is ready, replace skeleton with embed
         if (e.data.event === 'calendly.event_type_viewed') {
-            document.getElementById('calendly-embed')?.setAttribute('data-loaded', 'true');
-            document.querySelector('.skeleton-loader')?.setAttribute('data-hidden', 'true');
-        }
-
-        // On any height change, resize the container
-        if (e.data.event === 'calendly.height_changed') {
-            if (e.data.payload?.height) {
-                // Set the container height directly.
-                // This overrides the CSS `min-height` because inline styles have higher specificity.
-                placeholder.style.height = e.data.payload.height + 'px';
+            const skeleton = document.querySelector('.skeleton-loader');
+            const embed = document.getElementById('calendly-embed');
+            
+            // Remove skeleton from DOM
+            if (skeleton) {
+                skeleton.remove();
+            }
+            
+            // Show Calendly embed
+            if (embed) {
+                embed.style.display = 'block';
             }
         }
     });
