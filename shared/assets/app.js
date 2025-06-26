@@ -171,4 +171,15 @@ function initializeCalendly() {
     })();
 }
 
+// Build the 6 × 7 grid (42 boxes) the first time the schedule page loads
+(function buildSkeletonCalendar(){
+  const grid = document.querySelector('.skeleton-calendar-grid');
+  if (!grid || grid.children.length) return;
+  for (let i = 0; i < 42; i++){
+    const cell = document.createElement('div');
+    cell.className = 'skeleton-shape skeleton-date-box';
+    grid.appendChild(cell);
+  }
+})();
+
 
