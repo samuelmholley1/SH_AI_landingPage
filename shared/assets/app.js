@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize floating elements animation
     initializeFloatingElements();
+
+    // Initialize Calendly if on the schedule page
+    if (document.body.dataset.page === 'schedule') {
+        initializeCalendly();
+    }
 });
 
 /**
@@ -148,6 +153,42 @@ function initializeFloatingElements() {
             }, 100);
         }
     }
+}
+
+/**
+ * Initializes the Calendly skeleton loader and embed
+ */
+function initializeCalendly() {
+    // 1. Immediately build the skeleton grid.
+    const grid = document.querySelector('.skeleton-calendar-grid');
+    if (grid) {
+        for (let i = 0; i < 35; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'skeleton-shape skeleton-date-box';
+            if (Math.random() > 0.8) {
+                cell.style.opacity = '0.4';
+            }
+            grid.appendChild(cell);
+        }
+    }
+
+    // 2. Immediately attach the event listener for when Calendly is ready.
+    window.addEventListener('message', function handleCalendlyLoad(e) {
+        if (e.data.event && e.data.event === 'calendly.event_type_viewed') {
+            const embed = document.getElementById('calendly-embed');
+            const skeleton = document.querySelector('.skeleton-loader');
+
+            if (embed) {
+                embed.setAttribute('data-loaded', 'true');
+            }
+            if (skeleton) {
+                skeleton.setAttribute('data-hidden', 'true');
+            }
+            
+            // Clean up the listener after it has done its job.
+            window.removeEventListener('message', handleCalendlyLoad);
+        }
+    });
 }
 
 
