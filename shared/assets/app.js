@@ -194,9 +194,13 @@ function initializeCalendly() {
                 }
             }
 
-            // Calendly will naturally size itself, no height manipulation needed
+            // --- THIS IS THE NEW, IMPORTANT PART ---
             if (e.data.event === 'calendly.height_changed') {
-                console.log('Calendly height changed to:', e.data.payload?.height); // Debug log only
+                const placeholder = document.querySelector('.calendly-placeholder');
+                if (placeholder && e.data.payload?.height) {
+                    // Set the container height to the exact height of the widget + some padding
+                    placeholder.style.height = (e.data.payload.height + 40) + 'px';
+                }
             }
         }
     });

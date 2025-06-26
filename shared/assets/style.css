@@ -719,6 +719,28 @@ section {
     pointer-events: auto; /* Make it clickable */
 }
 
+.skeleton-loader {
+    position: absolute; /* Position it relative to the placeholder */
+    top: 40px;          /* Give it some space from the top */
+    left: 50%;
+    transform: translateX(-50%); /* The correct way to center an absolute element */
+    width: 80%;         /* Adjust width as needed */
+    max-width: 600px;   /* Prevent it from getting too wide on large screens */
+    z-index: 2;         /* Ensure it's on top initially */
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
+
+    /* These existing styles are good, keep them */
+    display: flex;
+    flex-direction: column;
+    padding: 32px 48px;
+    background: linear-gradient(135deg, var(--brand-white) 0%, var(--brand-light) 100%);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(26, 54, 93, 0.08);
+    box-sizing: border-box; /* Explicitly add this to be safe */
+}
+
 /* When the skeleton should be hidden, fade it out and make it unclickable */
 .skeleton-loader[data-hidden="true"] {
     opacity: 0;
@@ -884,18 +906,6 @@ section {
 
 .skeleton-shape {
     animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Remove .calendly-inline-widget absolute/opacity rules (Calendly handles its own iframe) */
-/* Ensure Calendly widget can expand properly */
-.calendly-inline-widget {
-    height: auto !important;
-    /* Removed min-height constraint that was causing internal scrolling */
-}
-
-.calendly-inline-widget iframe {
-    height: auto !important;
-    /* Removed min-height constraint that was causing internal scrolling */
 }
 
 /* Responsive additions for scheduling */
