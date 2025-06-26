@@ -693,12 +693,12 @@ section {
 .calendly-placeholder {
     position: relative;
     width: 100%;
-    /* min-height is removed to give JS full control */
+    min-height: 600px; /* RE-ADD THIS to contain the skeleton visually */
     background-color: var(--color-surface);
     border-radius: 16px;
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
     padding: 20px;
-    transition: height 0.4s ease; /* Bonus: Add a smooth transition for the resize */
+    transition: height 0.4s ease; /* This is good, keep it */
 }
 
 #calendly-embed {
@@ -706,10 +706,10 @@ section {
     top: 0;
     left: 0;
     width: 100%;
-    /* height: 100%; <-- THIS LINE IS REMOVED */
+    height: 100%; /* RE-ADD THIS to make the embed fill the container */
     border: 0;
-    z-index: 1; 
-    opacity: 0; 
+    z-index: 1;
+    opacity: 0;
     transition: opacity 0.5s 0.1s ease-in-out;
     pointer-events: none;
 }
