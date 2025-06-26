@@ -693,48 +693,55 @@ section {
 .calendly-placeholder {
     position: relative;
     width: 100%;
-    min-height: 400px; /* Minimum height for skeleton, but allows growth */
+    /* min-height: 400px; <-- REMOVED, no longer necessary */
     background-color: var(--color-surface);
     border-radius: 16px;
-    overflow: visible;
+    /* overflow: visible; <-- REMOVED, no longer necessary */
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
-    padding: 20px 20px 60px 20px; /* Add padding for visual buffer */
+    padding: 40px 20px; /* Simplified padding */
+    display: flex; /* Helps center the skeleton child */
+    flex-direction: column; /* Stacks children vertically */
+    align-items: center; /* Centers children like the skeleton */
 }
 
 #calendly-embed {
+    display: none; /* Hide it initially */
     width: 100%;
-    height: auto;
+    height: 700px; /* Give it a default height that Calendly recommends */
     border: 0;
     z-index: 2;
-    opacity: 0;
-    transition: opacity 0.5s 0.1s ease-in-out;
 }
 #calendly-embed[data-loaded="true"] {
-    opacity: 1;
+    display: block; /* Show it when loaded */
 }
 
 .skeleton-loader {
-    position: absolute;
-    top: 40px; /* Adjust for new container padding */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Center horizontally */
-    width: 70%; /* Match Calendly's ~70% width usage */
-    max-height: 500px; /* Prevent skeleton from growing too large */
+    /* --- REMOVED absolute positioning --- */
+    /* position: absolute; */
+    /* top: 40px; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+
+    /* --- ADDED for centering and spacing --- */
+    margin: 0 auto; /* Center the block horizontally */
+
+    /* --- KEPT THE SAME --- */
+    width: 70%;
+    max-height: 500px;
     display: flex;
     flex-direction: column;
     padding: 32px 48px;
-    z-index: 3; /* Higher z-index than iframe to show above */
+    z-index: 3;
     opacity: 1;
     transition: opacity 0.4s ease-out;
-    background: linear-gradient(135deg, var(--brand-white) 0%, var(--brand-light) 100%); /* Sophisticated gradient background */
+    background: linear-gradient(135deg, var(--brand-white) 0%, var(--brand-light) 100%);
     border: 1px solid var(--color-border);
-    border-radius: 12px; /* Slightly more rounded for modern feel */
-    box-shadow: 0 8px 32px rgba(26, 54, 93, 0.08); /* Elevated shadow */
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(26, 54, 93, 0.08);
 }
 
 .skeleton-loader[data-hidden="true"] {
-    opacity: 0;
-    pointer-events: none;
+    display: none; /* This is the key change */
 }
 
 /* =================================================================
