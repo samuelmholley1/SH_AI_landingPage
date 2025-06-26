@@ -689,26 +689,24 @@ section {
     margin: 0 auto;
 }
 
-/* --- THE RESPONSIVE CONTAINER (KEY FIX, REVISED) --- */
+/* --- THE RESPONSIVE CONTAINER (FLEXIBLE HEIGHT) --- */
 .calendly-placeholder {
     position: relative;
     width: 100%;
-    min-height: 920px; /* Increased to prevent bottom cutoff */
     background-color: var(--color-surface);
     border-radius: 16px;
-    overflow: visible; /* Changed from hidden to allow Calendly to expand */
+    overflow: visible;
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
-    padding-bottom: 40px; /* Increased bottom padding to prevent cutoff */
+    padding: 20px 20px 60px 20px; /* Add padding for visual buffer */
 }
 
 #calendly-embed {
     width: 100%;
-    height: auto; /* Let Calendly determine its own height */
-    min-height: 700px; /* Minimum fallback height */
+    height: auto;
+    border: 0;
     z-index: 2;
     opacity: 0;
     transition: opacity 0.5s 0.1s ease-in-out;
-    border: 0; /* remove default iframe border */
 }
 #calendly-embed[data-loaded="true"] {
     opacity: 1;
@@ -716,7 +714,7 @@ section {
 
 .skeleton-loader {
     position: absolute;
-    top: 60px; /* Moved down another 40px (20px + 40px) */
+    top: 40px; /* Adjust for new container padding */
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Center horizontally */
     width: 70%; /* Match Calendly's ~70% width usage */
@@ -917,17 +915,13 @@ section {
         padding: 80px 16px 40px 16px;
     }
     .calendly-placeholder {
-        min-height: 1000px; /* Increased for mobile to prevent cutoff */
-        padding-bottom: 50px; /* Extra bottom padding on mobile */
-    }
-    #calendly-embed {
-        min-height: 800px; /* Larger min-height for mobile Calendly content */
+        padding: 16px 16px 50px 16px; /* Consistent flexible padding for mobile */
     }
     .skeleton-loader {
         width: 85%; /* Slightly wider on mobile */
         padding: 24px 32px; /* Reduce padding on mobile */
         left: 50%; /* Ensure centering on mobile */
         transform: translateX(-50%); /* Ensure centering on mobile */
-        top: 60px; /* Maintain 60px offset on mobile */
+        top: 36px; /* Adjust for new container padding */
     }
 }

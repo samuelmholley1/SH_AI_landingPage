@@ -185,7 +185,6 @@ function initializeCalendly() {
             if (e.data.event === 'calendly.event_type_viewed') {
                 const embed = document.getElementById('calendly-embed');
                 const skeleton = document.querySelector('.skeleton-loader');
-                const placeholder = document.querySelector('.calendly-placeholder');
 
                 if (embed) {
                     embed.setAttribute('data-loaded', 'true');
@@ -193,30 +192,11 @@ function initializeCalendly() {
                 if (skeleton) {
                     skeleton.setAttribute('data-hidden', 'true');
                 }
-                
-                // Force height recalculation after a short delay
-                setTimeout(() => {
-                    if (placeholder) {
-                        placeholder.style.height = 'auto';
-                        placeholder.style.minHeight = '920px'; /* Increased to prevent cutoff */
-                    }
-                }, 500);
             }
 
-            // When the content height changes, adjust the container's height.
+            // Calendly will naturally size itself, no height manipulation needed
             if (e.data.event === 'calendly.height_changed') {
-                const placeholder = document.querySelector('.calendly-placeholder');
-                const embed = document.getElementById('calendly-embed');
-                if (placeholder && embed && e.data.payload && typeof e.data.payload.height === 'number') {
-                    const newHeight = Math.max(e.data.payload.height + 60, 920); // Increased buffer and minimum
-                    placeholder.style.height = `${newHeight}px`;
-                    placeholder.style.minHeight = `${newHeight}px`;
-                    // Remove any height constraints from the embed to let it expand naturally
-                    embed.style.height = `${newHeight - 40}px`; // Account for container padding
-                    embed.style.minHeight = `${newHeight - 40}px`;
-                    
-                    console.log('Calendly height changed to:', newHeight); // Debug log
-                }
+                console.log('Calendly height changed to:', e.data.payload?.height); // Debug log only
             }
         }
     });
