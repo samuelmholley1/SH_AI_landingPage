@@ -690,13 +690,13 @@ section {
 }
 
 /*
-  The Main Container. It's just a simple box now.
-  It will naturally grow to fit its content.
+  The Main Container. It's just a simple box.
+  It will naturally grow as its children grow.
 */
 .calendly-placeholder {
     width: 100%;
-    max-width: 900px; /* Give it a max width */
-    margin: 0 auto;   /* Center it */
+    max-width: 900px; /* Or whatever you prefer */
+    margin: 0 auto;
     background-color: var(--color-surface);
     border-radius: 16px;
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
@@ -705,12 +705,12 @@ section {
 
 /*
   The Skeleton. A normal block element.
-  It will be removed from the DOM by JavaScript.
+  This is correct as is.
 */
 .skeleton-loader {
-    width: 100%; /* Fill the container */
+    width: 100%;
     max-width: 550px;
-    margin: 0 auto; /* Center it */
+    margin: 0 auto;
     
     /* Keep these existing styles */
     display: flex;
@@ -723,7 +723,17 @@ section {
     box-sizing: border-box;
 }
 
-/* We don't need any special rules for #calendly-embed anymore */
+/*
+  The Calendly Embed Div. THIS IS THE KEY.
+  It should start with no height, and we'll add a smooth transition
+  for when the JavaScript resizes it.
+*/
+#calendly-embed {
+    width: 100%;
+    height: 0; /* Start with zero height */
+    overflow: hidden; /* Prevent any temporary scrollbars */
+    transition: height 0.5s ease; /* Animate the height change smoothly */
+}
 
 /* =================================================================
    SKELETON LOADER STYLES (v6 - Definitive)

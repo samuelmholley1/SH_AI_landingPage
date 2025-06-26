@@ -159,7 +159,7 @@ function initializeFloatingElements() {
  * Initializes the Calendly skeleton loader and embed
  */
 function initializeCalendly() {
-    // 1. Build the skeleton grid (this part is fine)
+    // This part, which builds the skeleton, is fine.
     const grid = document.querySelector('.skeleton-calendar-grid');
     if (grid) {
         for (let i = 0; i < 35; i++) {
@@ -173,37 +173,42 @@ function initializeCalendly() {
         }
     }
 
-    // --- THE OFFICIAL CALENDLY API METHOD ---
+    // --- The Official Calendly Event Listener Logic ---
+
     const skeleton = document.querySelector('.skeleton-loader');
     const embedDiv = document.getElementById('calendly-embed');
-    
-    if (!skeleton || !embedDiv) { 
-        console.error("Required elements for Calendly embed are missing.");
-        return; 
+
+    if (!skeleton || !embedDiv) {
+        console.error("Could not find skeleton or embed elements for Calendly.");
+        return;
     }
 
-    // Hide the embed container initially without display:none
-    embedDiv.style.height = '0px';
-    embedDiv.style.overflow = 'hidden';
-
-    // Listen for Calendly events
+    // 1. Listen for ALL messages from the window
     window.addEventListener('message', function(e) {
-        if (e.origin === "https://calendly.com") {
-            if (e.data.event === 'calendly.event_type_viewed') {
-                // Hide the skeleton and show the embed
+        // 2. Ignore messages that are not from Calendly's domain
+        if (e.origin !== "https://calendly.com") {
+            return;
+        }
+
+        // 3. Check if the event is the one we care about: 'calendly.height_changed'
+        if (e.data.event && e.data.event === 'calendly.height_changed') {
+            
+            // 4. If the skeleton is still visible, hide it.
+            if (skeleton.style.display !== 'none') {
                 skeleton.style.display = 'none';
-                embedDiv.style.height = '700px'; // Give it an initial height
-                embedDiv.style.overflow = 'visible';
             }
 
-            if (e.data.event === 'calendly.height_changed') {
-                // Let Calendly's event dictate the final height
+            // 5. THE MOST IMPORTANT STEP:
+            // Take the height from Calendly's message and apply it directly
+            // to our container div.
+            if (embedDiv && e.data.payload?.height) {
                 embedDiv.style.height = e.data.payload.height + 'px';
             }
         }
     });
-    
-    // Use the official Calendly API to initialize the widget
+
+    // 6. Call the init function to start the process. This will cause
+    // the height_changed event to fire for the first time.
     Calendly.initInlineWidget({
         url: 'https://calendly.com/samuelholleyai/30min',
         parentElement: embedDiv
