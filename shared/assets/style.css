@@ -691,57 +691,39 @@ section {
 
 /* --- THE RESPONSIVE CONTAINER (FLEXIBLE HEIGHT) --- */
 .calendly-placeholder {
-    position: relative;
+    position: relative; /* This is the positioning context for its children */
     width: 100%;
-    /* min-height: 400px; <-- REMOVED, no longer necessary */
+    min-height: 750px; /* A height that can accommodate the full Calendly widget */
     background-color: var(--color-surface);
     border-radius: 16px;
-    /* overflow: visible; <-- REMOVED, no longer necessary */
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
-    padding: 40px 20px; /* Simplified padding */
-    display: flex; /* Helps center the skeleton child */
-    flex-direction: column; /* Stacks children vertically */
-    align-items: center; /* Centers children like the skeleton */
+    padding: 20px; /* Padding is optional but can be nice */
 }
 
 #calendly-embed {
-    display: none; /* Hide it initially */
+    position: absolute; /* Position it relative to the placeholder */
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 700px; /* Give it a default height that Calendly recommends */
+    height: 100%;
     border: 0;
-    z-index: 2;
+    z-index: 1; /* Starts underneath the skeleton */
+    opacity: 0; /* Starts invisible but is NOT display:none */
+    transition: opacity 0.5s 0.1s ease-in-out;
+    pointer-events: none; /* Not interactive while invisible */
 }
+/* When Calendly is loaded, make it visible and interactive */
 #calendly-embed[data-loaded="true"] {
-    display: block; /* Show it when loaded */
-}
-
-.skeleton-loader {
-    /* --- REMOVED absolute positioning --- */
-    /* position: absolute; */
-    /* top: 40px; */
-    /* left: 50%; */
-    /* transform: translateX(-50%); */
-
-    /* --- ADDED for centering and spacing --- */
-    margin: 0 auto; /* Center the block horizontally */
-
-    /* --- KEPT THE SAME --- */
-    width: 70%;
-    max-height: 500px;
-    display: flex;
-    flex-direction: column;
-    padding: 32px 48px;
-    z-index: 3;
     opacity: 1;
-    transition: opacity 0.4s ease-out;
-    background: linear-gradient(135deg, var(--brand-white) 0%, var(--brand-light) 100%);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(26, 54, 93, 0.08);
+    z-index: 3; /* Bring it to the front */
+    pointer-events: auto; /* Make it clickable */
 }
 
+/* When the skeleton should be hidden, fade it out and make it unclickable */
 .skeleton-loader[data-hidden="true"] {
-    display: none; /* This is the key change */
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1; /* Send it to the back */
 }
 
 /* =================================================================
