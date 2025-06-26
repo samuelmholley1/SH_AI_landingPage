@@ -8,26 +8,31 @@ For local development, open `index.html` directly in a browser. All assets are r
 
 ## Deployment
 
-This project uses Vercel's zero-config deployment with conventional script naming.
+This project uses explicit Vercel configuration to eliminate all deployment ambiguity.
 
-### Zero-Config Setup
-- **Build Script**: `npm run build` (Vercel's default convention)
-- **Output Directory**: `public` (auto-detected by Vercel)
-- **No Manual Configuration**: Everything is handled by convention
+### Vercel Configuration Files
+- **`vercel.json`**: Explicit build configuration
+- **`package.json`**: Contains the `build` script
+- **No Manual UI Settings Required**: Everything is defined in code
+
+### Configuration Details
+```json
+// vercel.json
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "public"
+}
+```
 
 ### Build Process
 The build script creates a `public/` directory containing:
-- `index.html` (copied from root)
+- `index.html` (copied from root with `assets/` paths)
 - `assets/` (copied from `../shared/assets/`)
 
-This flattens the directory structure for deployment while maintaining the shared assets architecture for development.
-
-### Vercel Configuration
-No manual configuration required! Vercel automatically:
-1. Detects the `package.json` file
-2. Runs `npm run build`
-3. Serves the `public/` directory
-4. Handles all deployment settings via convention
+### Path Alignment
+- **HTML paths**: `href="assets/style.css"`
+- **Build output**: `public/assets/style.css`
+- **Result**: Perfect alignment, no 404 errors
 
 ## Features
 
