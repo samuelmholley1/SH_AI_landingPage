@@ -159,7 +159,7 @@ function initializeFloatingElements() {
  * Initializes the Calendly skeleton loader and embed
  */
 function initializeCalendly() {
-    // 1. Build the skeleton grid
+    // 1. Build the skeleton grid (this part is fine)
     const grid = document.querySelector('.skeleton-calendar-grid');
     if (grid) {
         for (let i = 0; i < 35; i++) {
@@ -173,27 +173,40 @@ function initializeCalendly() {
         }
     }
 
-    // Select the key elements
+    // --- THE OFFICIAL CALENDLY API METHOD ---
     const skeleton = document.querySelector('.skeleton-loader');
-    const embed = document.getElementById('calendly-embed');
-
-    if (!skeleton || !embed) {
-        console.error('Calendly elements for swap not found.');
-        return;
+    const embedDiv = document.getElementById('calendly-embed');
+    
+    if (!skeleton || !embedDiv) { 
+        console.error("Required elements for Calendly embed are missing.");
+        return; 
     }
 
-    // This function removes the skeleton and the hiding class from the embed
-    function showCalendly() {
-        skeleton.remove();
-        embed.classList.remove('visually-hidden');
-    }
+    // Hide the embed container initially without display:none
+    embedDiv.style.height = '0px';
+    embedDiv.style.overflow = 'hidden';
 
-    // 2. Listen for the message from the now-correctly-loaded Calendly iframe
-    window.addEventListener('message', function handleCalendlyEvents(e) {
-        if (e.origin === "https://calendly.com" && e.data.event === 'calendly.event_type_viewed') {
-            // Once Calendly's UI is ready, perform the swap.
-            showCalendly();
+    // Listen for Calendly events
+    window.addEventListener('message', function(e) {
+        if (e.origin === "https://calendly.com") {
+            if (e.data.event === 'calendly.event_type_viewed') {
+                // Hide the skeleton and show the embed
+                skeleton.style.display = 'none';
+                embedDiv.style.height = '700px'; // Give it an initial height
+                embedDiv.style.overflow = 'visible';
+            }
+
+            if (e.data.event === 'calendly.height_changed') {
+                // Let Calendly's event dictate the final height
+                embedDiv.style.height = e.data.payload.height + 'px';
+            }
         }
+    });
+    
+    // Use the official Calendly API to initialize the widget
+    Calendly.initInlineWidget({
+        url: 'https://calendly.com/samuelholleyai/30min',
+        parentElement: embedDiv
     });
 }
 

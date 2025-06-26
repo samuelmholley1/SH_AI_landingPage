@@ -701,7 +701,6 @@ section {
     border-radius: 16px;
     box-shadow: 0 4px 24px 0 rgba(26, 54, 93, 0.05);
     padding: 20px;
-    /* NO position, NO min-height */
 }
 
 /*
@@ -712,7 +711,6 @@ section {
     width: 100%; /* Fill the container */
     max-width: 550px;
     margin: 0 auto; /* Center it */
-    /* NO position: absolute */
     
     /* Keep these existing styles */
     display: flex;
@@ -725,14 +723,7 @@ section {
     box-sizing: border-box;
 }
 
-/*
-  The Calendly Embed. It will be added to the DOM by JavaScript.
-  We give it a minimum height to start, which Calendly's script will then override.
-*/
-#calendly-embed {
-    width: 100%;
-    min-height: 700px; /* This is a key instruction for Calendly's script */
-}
+/* We don't need any special rules for #calendly-embed anymore */
 
 /* =================================================================
    SKELETON LOADER STYLES (v6 - Definitive)
