@@ -716,7 +716,7 @@ section {
 
 .skeleton-loader {
     position: absolute;
-    top: 0; 
+    top: 20px; /* Moved down 20px */
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Center horizontally */
     width: 70%; /* Match Calendly's ~70% width usage */
@@ -727,7 +727,10 @@ section {
     z-index: 3; /* Higher z-index than iframe to show above */
     opacity: 1;
     transition: opacity 0.4s ease-out;
-    background-color: var(--color-surface); /* Add background to cover iframe */
+    background: linear-gradient(135deg, var(--brand-white) 0%, var(--brand-light) 100%); /* Sophisticated gradient background */
+    border: 1px solid var(--color-border);
+    border-radius: 12px; /* Slightly more rounded for modern feel */
+    box-shadow: 0 8px 32px rgba(26, 54, 93, 0.08); /* Elevated shadow */
 }
 
 .skeleton-loader[data-hidden="true"] {
@@ -740,8 +743,34 @@ section {
    ================================================================= */
 
 .skeleton-shape {
-    background-color: #e2e8f0; /* A neutral gray */
-    border-radius: 4px;
+    background: linear-gradient(90deg, #e2e8f0 0%, #f1f5f9 50%, #e2e8f0 100%);
+    border-radius: 6px; /* Slightly more rounded */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add sophisticated shimmer effect */
+.skeleton-shape::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(252, 97, 18, 0.1) 20%,
+        rgba(252, 97, 18, 0.15) 50%,
+        rgba(252, 97, 18, 0.1) 80%,
+        transparent 100%
+    );
+    animation: skeleton-shimmer 2s infinite ease-in-out;
+}
+
+@keyframes skeleton-shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
 }
 
 .skeleton-line {
@@ -753,7 +782,13 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
+    padding: 0 8px; /* Add subtle padding */
+}
+
+.skeleton-header .skeleton-shape {
+    background: linear-gradient(90deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+    opacity: 0.15; /* Subtle brand presence */
 }
 
 /* --- Month Navigation --- */
@@ -761,43 +796,93 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+    padding: 0 8px;
 }
 .skeleton-nav-arrow {
-    width: 24px;
-    height: 24px;
+    width: 28px; /* Slightly larger */
+    height: 28px;
     border-radius: 50%;
+    background: linear-gradient(135deg, var(--brand-accent) 0%, #E0540B 100%);
+    opacity: 0.2; /* Subtle brand accent */
+}
+
+.skeleton-month-nav .skeleton-line {
+    background: linear-gradient(90deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+    opacity: 0.2;
 }
 
 /* --- Weekdays --- */
 .skeleton-weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
-    margin-bottom: 8px;
+    gap: 10px; /* Slightly more spacing */
+    margin-bottom: 12px;
+    padding: 0 4px;
 }
 .skeleton-weekday {
-    height: 16px;
-    width: 70%;
+    height: 18px; /* Slightly taller */
+    width: 75%;
     margin: 0 auto;
+    background: linear-gradient(90deg, var(--brand-secondary) 0%, var(--brand-primary) 100%);
+    opacity: 0.25; /* Subtle brand presence */
+    border-radius: 4px;
 }
 
 /* --- Calendar Grid --- */
 .skeleton-calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
+    gap: 10px; /* More spacious */
     flex-grow: 1;
+    padding: 0 4px;
 }
 .skeleton-date-box {
     aspect-ratio: 1 / 1; /* Make them square */
+    border-radius: 8px; /* More rounded for modern feel */
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 1px solid rgba(26, 54, 93, 0.08); /* Subtle border */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add subtle accent highlights to some date boxes */
+.skeleton-date-box:nth-child(7n-2),
+.skeleton-date-box:nth-child(7n-5) {
+    background: linear-gradient(135deg, rgba(252, 97, 18, 0.08) 0%, rgba(252, 97, 18, 0.04) 100%);
+    border-color: rgba(252, 97, 18, 0.15);
+}
+
+/* Add shimmer to date boxes */
+.skeleton-date-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(252, 97, 18, 0.1) 50%,
+        transparent 70%
+    );
+    animation: skeleton-shimmer 3s infinite ease-in-out;
+    animation-delay: calc(var(--delay, 0) * 0.1s);
 }
 
 /* --- Footer --- */
 .skeleton-footer {
-    margin-top: 24px;
+    margin-top: 28px;
     display: flex;
     justify-content: center;
+    padding: 0 8px;
+}
+
+.skeleton-footer .skeleton-shape {
+    background: linear-gradient(90deg, var(--brand-secondary) 0%, var(--brand-primary) 100%);
+    opacity: 0.2;
+    border-radius: 6px;
 }
 
 /* --- Animation --- */
@@ -806,12 +891,12 @@ section {
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.7; /* Less aggressive pulsing */
   }
 }
 
 .skeleton-shape {
-    animation: skeleton-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 /* Remove .calendly-inline-widget absolute/opacity rules (Calendly handles its own iframe) */
@@ -843,5 +928,6 @@ section {
         padding: 24px 32px; /* Reduce padding on mobile */
         left: 50%; /* Ensure centering on mobile */
         transform: translateX(-50%); /* Ensure centering on mobile */
+        top: 20px; /* Maintain 20px offset on mobile */
     }
 }

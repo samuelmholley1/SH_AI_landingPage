@@ -165,6 +165,7 @@ function initializeCalendly() {
         for (let i = 0; i < 35; i++) {
             const cell = document.createElement('div');
             cell.className = 'skeleton-shape skeleton-date-box';
+            cell.style.setProperty('--delay', i); // Add staggered delay for shimmer
             if (Math.random() > 0.8) {
                 cell.style.opacity = '0.4';
             }
