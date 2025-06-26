@@ -172,21 +172,34 @@ function initializeCalendly() {
         }
     }
 
-    // 2. Immediately attach the event listener for when Calendly is ready.
-    window.addEventListener('message', function handleCalendlyLoad(e) {
-        if (e.data.event && e.data.event === 'calendly.event_type_viewed') {
-            const embed = document.getElementById('calendly-embed');
-            const skeleton = document.querySelector('.skeleton-loader');
+    // 2. Listen for messages from the Calendly iframe.
+    window.addEventListener('message', function handleCalendlyEvents(e) {
+        // We only care about events from Calendly.
+        if (e.origin !== "https://calendly.com") {
+            return;
+        }
 
-            if (embed) {
-                embed.setAttribute('data-loaded', 'true');
+        if (e.data.event) {
+            // When the initial view is ready, hide the skeleton and show the embed.
+            if (e.data.event === 'calendly.event_type_viewed') {
+                const embed = document.getElementById('calendly-embed');
+                const skeleton = document.querySelector('.skeleton-loader');
+
+                if (embed) {
+                    embed.setAttribute('data-loaded', 'true');
+                }
+                if (skeleton) {
+                    skeleton.setAttribute('data-hidden', 'true');
+                }
             }
-            if (skeleton) {
-                skeleton.setAttribute('data-hidden', 'true');
+
+            // When the content height changes, adjust the container's height.
+            if (e.data.event === 'calendly.height_changed') {
+                const placeholder = document.querySelector('.calendly-placeholder');
+                if (placeholder && e.data.payload && typeof e.data.payload.height === 'number') {
+                    placeholder.style.height = `${e.data.payload.height}px`;
+                }
             }
-            
-            // Clean up the listener after it has done its job.
-            window.removeEventListener('message', handleCalendlyLoad);
         }
     });
 }
