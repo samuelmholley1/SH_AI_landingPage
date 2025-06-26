@@ -872,8 +872,6 @@ section {
 /* --- Footer --- */
 .skeleton-footer {
     margin-top: 28px;
-    display: flex;
-    justify-content: center;
     padding: 0 8px;
 }
 
@@ -881,6 +879,7 @@ section {
     background: linear-gradient(90deg, var(--brand-secondary) 0%, var(--brand-primary) 100%);
     opacity: 0.2;
     border-radius: 6px;
+    width: 100%; /* Ensure full width */
 }
 
 /* --- Animation --- */
@@ -901,12 +900,12 @@ section {
 /* Ensure Calendly widget can expand properly */
 .calendly-inline-widget {
     height: auto !important;
-    min-height: 700px !important;
+    /* Removed min-height constraint that was causing internal scrolling */
 }
 
 .calendly-inline-widget iframe {
     height: auto !important;
-    min-height: 700px !important;
+    /* Removed min-height constraint that was causing internal scrolling */
 }
 
 /* Responsive additions for scheduling */
