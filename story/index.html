@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Story | Samuel Holley AI Consulting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/assets/global.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() { AOS.init({ once: true, duration: 900, easing: 'ease-out-cubic' }); });
+    </script>
+    <style>
+      .story-hero {
+        position: relative;
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url('../shared/assets/samuel_holley_hero.jpg') center/cover no-repeat;
+      }
+      .story-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(16, 32, 64, 0.7); /* --deep-blue at 70% */
+        z-index: 1;
+      }
+      .story-hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #fff;
+        padding: 4rem 1rem 3rem 1rem;
+      }
+      .story-hero-content h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+        margin: 0;
+      }
+      .story-section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 4rem 1.5rem 3rem 1.5rem;
+      }
+      .story-two-col {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        align-items: flex-start;
+      }
+      .story-two-col > div {
+        flex: 1 1 320px;
+        min-width: 280px;
+      }
+      .story-section h2 {
+        font-size: 2rem;
+        font-family: 'Playfair Display', serif;
+        color: var(--deep-blue);
+        margin-bottom: 1rem;
+      }
+      .story-section h4 {
+        font-size: 1.1rem;
+        color: var(--primary-orange);
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+      .story-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1rem 0;
+      }
+      .story-section ul li {
+        position: relative;
+        padding-left: 2rem;
+        margin-bottom: 0.7rem;
+        font-size: 1.08rem;
+      }
+      .story-section ul li.star::before {
+        content: '★';
+        color: var(--primary-orange);
+        position: absolute;
+        left: 0;
+        font-size: 1.1em;
+        top: 0.1em;
+      }
+      .story-section ul li.check::before {
+        content: '✔';
+        color: var(--deep-blue);
+        position: absolute;
+        left: 0;
+        font-size: 1.1em;
+        top: 0.1em;
+      }
+      .story-section blockquote {
+        font-style: italic;
+        color: var(--primary-orange);
+        background: rgba(255, 140, 0, 0.07);
+        border-left: 4px solid var(--primary-orange);
+        margin: 2.5rem auto;
+        padding: 1.5rem 2rem;
+        text-align: center;
+        font-size: 1.3rem;
+        max-width: 700px;
+      }
+      .story-section .bold-text {
+        font-weight: 700;
+        color: var(--deep-blue);
+        margin-top: 1.2rem;
+        font-size: 1.1rem;
+      }
+      .story-mission {
+        text-align: center;
+        padding: 4rem 1.5rem 3rem 1.5rem;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .story-mission h2 {
+        color: var(--deep-blue);
+        font-family: 'Playfair Display', serif;
+        font-size: 2.1rem;
+        margin-bottom: 1.2rem;
+      }
+      .story-mission p {
+        font-size: 1.15rem;
+        margin-bottom: 2.2rem;
+      }
+      .story-mission .btn {
+        font-size: 1.1rem;
+        padding: 0.9rem 2.2rem;
+        background: var(--primary-orange);
+        color: #fff;
+        border: none;
+        border-radius: 2.5rem;
+        font-weight: 700;
+        box-shadow: 0 2px 12px rgba(255,140,0,0.08);
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .story-mission .btn:hover {
+        background: #e67c00;
+      }
+      @media (max-width: 900px) {
+        .story-two-col {
+          flex-direction: column;
+        }
+      }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <a href="../home/"><img src="../shared/assets/samuel_holley_logo_transparent.png" alt="Samuel Holley AI Consulting Logo" class="logo"></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../reclaim/" class="nav-link">My Method</a></li>
+                <li><a href="../services/" class="nav-link">How I Help</a></li>
+                <li><a href="#" class="nav-link active">My Story</a></li>
+                <li><a href="../audit/" class="nav-link">AI Audit</a></li>
+                <li><a href="../schedule/" class="btn btn--primary nav-cta">Book Free Audit</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="story-hero">
+      <div class="story-hero-content" data-aos="fade-up">
+        <h1>I Had to Rebuild My Own Life by Design.</h1>
+      </div>
+    </section>
+
+    <!-- Before Section -->
+    <section class="story-section" data-aos="fade-up">
+      <div class="story-two-col">
+        <div>
+          <h2>An Expert in Systems, Running on Empty.</h2>
+          <p>For over a decade, I was an expert at building systems for others. As a lead instructor and program director for elite test prep companies, and later as a director at a global EdTech firm, my job was to translate complex, intimidating systems into human-centered frameworks. I helped thousands of anxious, intelligent people manage their overwhelm, build their confidence, and achieve their goals. I managed multi-million dollar client portfolios and scaled high-touch programs for teams of over 60 tutors.<br><br>On the outside, I was a master of systems and productivity. On the inside, I was holding together a life built on a fragile foundation.</p>
+        </div>
+        <div>
+          <h4>Highlights:</h4>
+          <ul>
+            <li class="star">Managed $1M+ client portfolios.</li>
+            <li class="star">Scaled programs for 60+ person teams.</li>
+            <li class="star">Coached thousands of high-achieving professionals.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Crisis Section -->
+    <section class="story-section" data-aos="fade-up">
+      <h2>The Breakdown That Became the Breakthrough</h2>
+      <p>For years, I was also a full-time caregiver for my wife, Ally, as she battled a cascade of severe, complex chronic illnesses. Her journey involved years on bed rest, multiple hospitalizations, and moments where we faced the very real possibility of losing her.<br><br>The pressure was immense. I was juggling a demanding career while managing a moment-to-moment health crisis, all while suppressing my own deep-seated trauma from a childhood defined by emotional neglect. I was running on a potent but unsustainable fuel: anxiety and a desperate need to hold everything together.<br><br>In the summer of 2022, that engine finally broke down. I hit a wall of profound burnout that left me unable to function.</p>
+      <blockquote>The systems I had built for others had failed to save myself.</blockquote>
+      <p>That breakdown forced a choice: continue to disintegrate, or find a new way to live.</p>
+    </section>
+
+    <!-- Rebuilding Section -->
+    <section class="story-section" style="background:var(--light-bg);" data-aos="fade-up">
+      <div class="story-two-col">
+        <div>
+          <h2>From a Blank Page to a New Blueprint</h2>
+          <p>The journey back was not about "powering through." It was about consciously and intentionally redesigning my life from the ground up, using the very principles I had taught for years.<br><br>I had to Clarify what truly mattered, separating external pressures from my own internal values.<br>I had to Automate the non-essential parts of my life to conserve my limited energy for what was most important: healing.<br>And slowly, I learned to Amplify my own voice and purpose again, using new tools—including AI—not as a crutch, but as a partner in my own cognitive and emotional rebuilding.<br><br>I learned that the most powerful systems aren't about technology; they are about humanity. They are about creating space for focus, protecting our energy, and aligning our actions with a deeper sense of purpose.</p>
+        </div>
+        <div>
+          <h4>My Guiding Principles:</h4>
+          <ul>
+            <li class="check">Clarify what truly matters.</li>
+            <li class="check">Automate the non-essential.</li>
+            <li class="check">Amplify your own purpose.</li>
+          </ul>
+          <p class="bold-text">This personal journey became the blueprint for Reclaim by Design™.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="story-mission" data-aos="fade-up">
+      <h2>Why I Do This Work</h2>
+      <p>I am not an AI evangelist. I am a human advocate.<br><br>I believe that the age of AI presents us with the same choice my breakdown presented me: either we allow its complexity to overwhelm us, or we use it as a powerful catalyst to reclaim our time, focus, and purpose.<br><br>My work is dedicated to helping you choose the latter. I've been in the trenches of overwhelm, and I know the way out. It's not about becoming more like a machine; it's about using the machine to become more fully human.</p>
+      <a href="https://schedule.samuelholley.com" class="btn">Let's Build Your Strategy. Book a Free Call.</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-main">
+                <span>Samuel Holley</span> &middot; <span>© 2025</span>
+                <span class="footer-links">
+                    <a href="https://www.linkedin.com/in/samuelholley/" target="_blank" rel="noopener">LinkedIn</a> |
+                    <a href="#" target="_blank" rel="noopener">Privacy Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
