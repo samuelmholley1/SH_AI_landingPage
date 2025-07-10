@@ -1,0 +1,73 @@
+/* proof.css: Additional styles for the Proof (Testimonials/Case Studies) page */
+.case-study-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 16px rgba(16,32,64,0.07);
+  padding: 2.2rem 1.5rem 1.7rem 1.5rem;
+  margin: 2.5rem auto 1.5rem auto;
+  max-width: 900px;
+}
+.case-study-card > div {
+  flex: 1 1 320px;
+  min-width: 260px;
+}
+.case-study-card h4 {
+  color: var(--deep-blue);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+.case-study-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+.case-study-card ul li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.08rem;
+}
+.case-study-card ul li.check::before {
+  content: '✔';
+  color: var(--deep-blue);
+  position: absolute;
+  left: 0;
+  font-size: 1.1em;
+  top: 0.1em;
+}
+.placeholder-text {
+  font-style: italic;
+  text-align: center;
+  color: var(--dark-text);
+  margin-top: 1.2rem;
+}
+.logo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  margin: 2.5rem auto 1.5rem auto;
+  max-width: 900px;
+}
+.logo-grid img {
+  height: 48px;
+  filter: grayscale(1) brightness(0.8);
+  transition: filter 0.2s;
+  margin: 0 1.2rem;
+}
+.logo-grid img:hover {
+  filter: none;
+}
+@media (max-width: 900px) {
+  .case-study-card {
+    flex-direction: column;
+  }
+  .logo-grid {
+    gap: 1.2rem;
+  }
+}
