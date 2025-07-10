@@ -1,0 +1,12 @@
+/* GLOBAL STYLES for all pages */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600&display=swap');
+
+:root {
+  --primary-orange: #F36C21;
+  --deep-blue: #0B3D91;
+  --dark-text: #1a1a1a;
+  --light-bg: #f9f9f9;
+  --white: #ffffff;
+}
+
+/* ...existing code from previous style.css, including all section, button, nav, and responsive styles... */

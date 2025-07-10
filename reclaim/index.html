@@ -10,90 +10,95 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
             <div class="nav-brand">
-                <a href="https://samuelholley.com"><img src="assets/phoenix-transparent.png" alt="Samuel Holley AI Consulting Logo" style="height: 50px;"></a>
+                <a href="../home/"><img src="../shared/assets/samuel_holley_logo_transparent.png" alt="Samuel Holley AI Consulting Logo" class="logo"></a>
             </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="https://samuelholley.com" class="nav-link">Home</a>
-                <a href="https://samuelholley.com#pricing" class="nav-link">Services</a>
-                <a href="https://reclaim.samuelholley.com" class="nav-link">Framework</a>
-                <a href="https://samuelholley.com#about" class="nav-link">About</a>
-                <a href="https://samuelholley.com#contact" class="nav-link">Contact</a>
-            </div>
-            <button class="nav-toggle" id="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <ul class="nav-menu">
+                <li><a href="../reclaim/" class="nav-link active">My Method</a></li>
+                <li><a href="../services/" class="nav-link">How I Help</a></li>
+                <li><a href="../about/" class="nav-link">My Story</a></li>
+                <li><a href="../audit/" class="nav-link">AI Audit</a></li>
+                <li><a href="../audit/" class="btn btn--primary nav-cta">Book Free Audit</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <!-- Hero/Intro Section -->
+    <section class="hero method-hero" style="background: var(--light-bg); text-align: center; padding: 120px 20px 60px 20px;">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Reclaim by Design™</h1>
-                <p class="hero-subtitle">More than a framework, it's a system and a mindset shift for the AI era.</p>
-                <p>Reclaim by Design™ clarifies purpose, automates with precision, and amplifies what makes you distinctly human.</p>
+            <h2 style="font-size:clamp(2.2rem,5vw,3.5rem); color:var(--deep-blue); font-family:'Playfair Display',serif; font-weight:900; margin-bottom:1.5rem;">A Method Designed for Humans, Not Machines.</h2>
+            <p style="font-size:1.2rem; max-width:700px; margin:0 auto; color:var(--dark-text);">The endless stream of new AI tools isn't the problem. The real challenge is the lack of a human-centered strategy for using them. Without a clear purpose, more technology just leads to more overwhelm.<br><br>That's why I created Reclaim by Design™, a proprietary method that goes beyond simple prompts and hacks. It's a holistic approach to building a lasting, ethical, and deeply personal AI strategy.<br><br>The work is not just about doing things faster. It’s about reclaiming the three most valuable assets you have:</p>
+        </div>
+    </section>
+
+    <!-- Core Promise: Reclaim Your Time -->
+    <section class="feature-section" data-aos="fade-up">
+        <div class="container feature-grid">
+            <div class="feature-icon-col">
+                <svg width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="36" stroke="var(--primary-orange)" stroke-width="5"/><path d="M40 22v22l14 14" stroke="var(--deep-blue)" stroke-width="5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="feature-text-col">
+                <h3>1. Reclaim Your Time</h3>
+                <p>Your most finite resource is being drained by repetitive tasks, administrative drag, and the mental energy it takes to manage it all. We will implement intelligent automation systems that eliminate these tasks, giving you back hours in your week—not for more work, but for more of what matters.</p>
+            </div>
+        </div>
+    </section>
+    <!-- Core Promise: Reclaim Your Focus (reversed) -->
+    <section class="feature-section feature-reverse" data-aos="fade-up">
+        <div class="container feature-grid">
+            <div class="feature-text-col">
+                <h3>2. Reclaim Your Focus</h3>
+                <p>Information overload creates strategic fog. It becomes impossible to distinguish the urgent from the important. We will work together to cut through the noise, clarify your highest-leverage priorities, and design an AI workflow that protects your focus and enhances your decision-making, turning complexity into clarity.</p>
+            </div>
+            <div class="feature-icon-col">
+                <svg width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="36" stroke="var(--primary-orange)" stroke-width="5"/><circle cx="40" cy="40" r="18" stroke="var(--deep-blue)" stroke-width="5"/><circle cx="40" cy="40" r="6" fill="var(--deep-blue)"/></svg>
+            </div>
+        </div>
+    </section>
+    <!-- Core Promise: Reclaim Your Story -->
+    <section class="feature-section" data-aos="fade-up">
+        <div class="container feature-grid">
+            <div class="feature-icon-col">
+                <svg width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 62c16-16 32-32 44-44l4 4c-12 12-28 28-44 44l-4-4z" stroke="var(--primary-orange)" stroke-width="5"/><path d="M26 54l8 8" stroke="var(--deep-blue)" stroke-width="5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="feature-text-col">
+                <h3>3. Reclaim Your Story</h3>
+                <p>In the age of AI, the greatest risk is allowing your purpose and voice to be dictated by the algorithms of others. This is the deepest work we do. We use AI not just as a tool, but as a cognitive partner to help you amplify your unique insights, values, and narrative. We ensure that technology serves your story, not the other way around.</p>
             </div>
         </div>
     </section>
 
-    <!-- Brand Orange Banner: Futuristic, Flashy, Humanistic -->
-    <section class="brand-banner">
-        <div class="banner-content">
-            <h2>AI is a Tool. <span class="banner-flash">Design is the Advantage.</span></h2>
-            <p>Step boldly into the future—where human intention meets intelligent automation.</p>
-            <svg class="banner-svg" width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="banner-flash-gradient" x1="0" y1="0" x2="120" y2="32" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#FC6112"/>
-                        <stop offset="1" stop-color="#FFB36A"/>
-                    </linearGradient>
-                </defs>
-                <rect x="0" y="8" width="120" height="16" rx="8" fill="url(#banner-flash-gradient)" fill-opacity="0.18"/>
-                <rect x="10" y="0" width="100" height="32" rx="16" fill="url(#banner-flash-gradient)" fill-opacity="0.12"/>
-            </svg>
+    <!-- The Process Section -->
+    <section class="process-section" style="background:var(--light-bg); padding:80px 20px;" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title" style="text-align:center; color:var(--deep-blue); font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:2.5rem;">How We Do It: Our 3-Step Process</h2>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="process-step-title">Phase I: CLARIFY</div>
+                    <p>We start with a deep diagnostic of your current reality. We audit your assumptions, your workflows, and your goals. We get crystal clear on where the friction is and what "success" truly means for you, creating a strategic roadmap before we touch a single tool.</p>
+                </div>
+                <div class="process-connector"></div>
+                <div class="process-step">
+                    <div class="process-step-title">Phase II: AUTOMATE</div>
+                    <p>Armed with clarity, we design and implement targeted AI-powered systems. This isn't about adding more apps; it's about eliminating tasks. We build intelligent workflows that handle the repetitive work, freeing up your time, energy, and mental bandwidth for high-impact thinking.</p>
+                </div>
+                <div class="process-connector"></div>
+                <div class="process-step">
+                    <div class="process-step-title">Phase III: AMPLIFY</div>
+                    <p>This is where we move beyond efficiency and into mastery. Through personalized coaching, I help you learn to think with AI. You will move from being a passive user to a confident strategist, using AI as a cognitive partner to deepen your creativity, sharpen your insights, and scale your impact without scaling your stress.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Introduction Section -->
-    <section id="intro" class="framework-section" style="background-color: var(--brand-white);">
-        <div class="container">
-             <div class="section-header">
-                <h2>Beyond Prompts: Designing Your Agency in an AI-Driven World</h2>
-                <p>Artificial Intelligence offers unprecedented power. But with this power comes a critical challenge: in a world increasingly interfaced through technology—from screens today to AI wearables tomorrow—every digital interaction is a test. Are you consciously designing your engagement, or is your attention being commandeered by algorithms and Big Tech? Reclaim by Design™ is more than an AI strategy; it's your framework for navigating this new reality with purpose, clarity, and unshakable human agency. It's about arming yourself with the mindset and methods to ensure AI serves your aims, not the other way around.</p>
-                <h3>When AI Obliterates Excuses, Intentionality is Everything</h3>
-                <p>The seductive promise of AI is often 'time-saving.' And yes, Reclaim by Design™ helps you automate extensively, freeing up significant portions of your day. But what happens when the excuse of 'not enough time' vanishes? AI, by its very efficiency, forces a profound ethical question upon us: How will you choose to live and work with these reclaimed minutes and this newfound control? If you don't consciously design your focus and purpose, external forces will gladly design your days for their ends. This framework is your preparation for making those choices deliberately.</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Framework Section -->
-    <section id="framework" class="framework-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>The Reclaim by Design™ Process: Reclaiming Your Focus, Time, & Story</h2>
-            </div>
-            <div class="framework-pillars">
-                <div class="pillar-card">
-                    <h3 class="pillar-title">1. RECLAIM YOUR FOCUS</h3>
-                    <h4 class="pillar-subtitle">Designing Your Intent in an Age of Noise</h4>
-                    <p class="pillar-description">Before we touch a tool, we confront 'information obesity' and the AI hype. This stage is about cutting through confusion to establish a rock-solid understanding of AI's true nature—its statistical power, its potential for bias, its lack of true sentience. More importantly, we conduct an 'Assumption Audit,' surfacing your deepest hopes, fears, and potential blind spots regarding AI. We then define your core objectives, ensuring AI strategy is meticulously aligned with your ethical framework and conscious aims. This isn't just goal-setting; it's designing the 'why' that will drive your AI partnership.</p>
-                </div>
-                <div class="pillar-card">
-                    <h3 class="pillar-title">2. RECLAIM YOUR TIME</h3>
-                    <h4 class="pillar-subtitle">Designing Systems for Reclaimed Time & Energy</h4>
-                    <p class="pillar-description">This is where we strategically dismantle drudgery. We identify the repetitive, time-consuming tasks in your work and life that are ripe for intelligent automation. You'll learn to wield smart prompts, custom GPTs, and AI agents not as magic wands, but as precision tools to build efficient systems. As you delegate, our 'Friction Journal' micro-exercise helps you navigate the human side of automation—trust, control, and letting go. The outcome is tangible: hours reclaimed weekly, mental bandwidth freed, and energy redirected from the mundane to the meaningful.</p>
-                </div>
-                <div class="pillar-card">
-                    <h3 class="pillar-title">3. RECLAIM YOUR STORY</h3>
-                    <h4 class="pillar-subtitle">Designing Your Unique Human Potential with AI as Co-Pilot</h4>
-                    <p class="pillar-description">With clarity of purpose and reclaimed time, we focus on the ultimate goal: amplifying your uniquely human capabilities. AI becomes your 'cognitive exoskeleton'—a partner to elevate strategic insight, spark creativity, and deepen your critical thinking. This isn't about AI thinking for you; it's about you thinking better, deeper, and more purposefully with AI's support. You'll craft your 'Purpose Statement' ("AI frees my mind so I can..."), ensuring your amplified capacity serves what you consciously choose. This is where you learn to truly thrive, keeping your soul in the circuit.</p>
-                </div>
-            </div>
+    <!-- Final CTA Section -->
+    <section class="final-cta-section" style="background:var(--white);" data-aos="fade-up">
+        <div class="container final-cta-content">
+            <h3>Your AI Strategy Should Feel Like Relief, Not Another Burden.</h3>
+            <p>Ready to see how this method can apply directly to your life or business?</p>
+            <a href="https://schedule.samuelholley.com" class="btn btn--primary btn--lg">Book My Free 30-Min AI Audit</a>
         </div>
     </section>
 
