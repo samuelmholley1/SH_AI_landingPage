@@ -9,4 +9,155 @@
   --white: #ffffff;
 }
 
+/* Base typography */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--dark-text);
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  color: var(--deep-blue);
+  margin: 0 0 0.4em;
+}
+* {
+  box-sizing: border-box;
+}
+
 /* ...existing code from previous style.css, including all section, button, nav, and responsive styles... */
+
+/* === RECLAIM/PROCESS/FEATURE LAYOUTS === */
+.feature-section {
+  padding: 60px 0;
+  background: var(--white);
+}
+.feature-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.feature-icon-col {
+  flex: 0 0 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.feature-text-col {
+  flex: 1 1 320px;
+  min-width: 260px;
+}
+.feature-section h3 {
+  color: var(--deep-blue);
+  font-size: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 0.7rem;
+  font-weight: 700;
+}
+.feature-section p {
+  font-size: 1.08rem;
+  color: var(--dark-text);
+}
+.feature-reverse .feature-grid {
+  flex-direction: row-reverse;
+}
+
+/* Process Section */
+.process-section {
+  padding: 80px 0;
+  background: var(--light-bg);
+}
+.process-flow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.process-step {
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 16px rgba(16,32,64,0.07);
+  padding: 2rem 1.5rem;
+  flex: 1 1 260px;
+  min-width: 220px;
+  max-width: 320px;
+  text-align: center;
+  position: relative;
+}
+.process-step-title {
+  color: var(--primary-orange);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.5px;
+}
+.process-connector {
+  width: 40px;
+  height: 4px;
+  background: var(--primary-orange);
+  align-self: center;
+  border-radius: 2px;
+  margin: 0 10px;
+  display: none;
+}
+@media (min-width: 900px) {
+  .process-flow {
+    flex-wrap: nowrap;
+  }
+  .process-connector {
+    display: block;
+  }
+}
+
+/* Final CTA Section */
+.final-cta-section {
+  background: var(--white);
+  padding: 60px 0 40px 0;
+  text-align: center;
+}
+.final-cta-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.final-cta-section h3 {
+  color: var(--deep-blue);
+  font-size: 2rem;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1.2rem;
+  font-weight: 900;
+}
+.final-cta-section p {
+  font-size: 1.15rem;
+  margin-bottom: 2.2rem;
+}
+.final-cta-section .btn {
+  font-size: 1.1rem;
+  padding: 0.9rem 2.2rem;
+  background: var(--primary-orange);
+  color: #fff;
+  border: none;
+  border-radius: 2.5rem;
+  font-weight: 700;
+  box-shadow: 0 2px 12px rgba(255,140,0,0.08);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.final-cta-section .btn:hover {
+  background: #e67c00;
+}
+
+@media (max-width: 900px) {
+  .feature-grid, .process-flow {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .feature-icon-col {
+    margin-bottom: 1.2rem;
+  }
+}
