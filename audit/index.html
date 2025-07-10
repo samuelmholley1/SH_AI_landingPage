@@ -3,11 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Audit | Samuel Holley AI Consulting</title>
+    <title>AI Readiness Audit | Samuel Holley AI Consulting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../shared/assets/global.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', function() { AOS.init({ once: true, duration: 900, easing: 'ease-out-cubic' }); });</script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() { AOS.init({ once: true, duration: 900, easing: 'ease-out-cubic' }); });
+    </script>
+    <style>
+      .audit-hero {
+        background: var(--light-bg);
+        text-align: center;
+        padding: 110px 20px 60px 20px;
+      }
+      .audit-hero h2 {
+        font-size: clamp(2.2rem,5vw,3.2rem);
+        color: var(--deep-blue);
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+        margin-bottom: 1.3rem;
+      }
+      .audit-hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto;
+        color: var(--dark-text);
+      }
+      .audit-value {
+        display: flex;
+        gap: 2.5rem;
+        justify-content: center;
+        align-items: stretch;
+        margin: 0 auto 3.5rem auto;
+        max-width: 1100px;
+        flex-wrap: wrap;
+      }
+      .audit-value-card {
+        background: #fff;
+        border-radius: 1.2rem;
+        box-shadow: 0 2px 16px rgba(16,32,64,0.07);
+        padding: 2.2rem 1.5rem 1.7rem 1.5rem;
+        flex: 1 1 260px;
+        min-width: 260px;
+        max-width: 340px;
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .audit-value-card svg {
+        width: 38px;
+        height: 38px;
+        margin-bottom: 1.1rem;
+        color: var(--primary-orange);
+      }
+      .audit-value-card h4 {
+        font-size: 1.15rem;
+        color: var(--deep-blue);
+        font-weight: 700;
+        margin-bottom: 0.7rem;
+      }
+      .audit-value-card p {
+        font-size: 1.02rem;
+        color: var(--dark-text);
+      }
+      .audit-tool-section {
+        background: var(--light-bg);
+        padding: 3.5rem 1.5rem 3.5rem 1.5rem;
+        text-align: center;
+      }
+      .audit-tool-section h2 {
+        font-size: 2rem;
+        color: var(--deep-blue);
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+        margin-bottom: 2.2rem;
+      }
+      .audit-tool-embed {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 1.2rem;
+        box-shadow: 0 2px 16px rgba(16,32,64,0.07);
+        padding: 2rem 1rem;
+        min-height: 420px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .audit-followup {
+        text-align: center;
+        padding: 4rem 1.5rem 3rem 1.5rem;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .audit-followup h2 {
+        color: var(--deep-blue);
+        font-family: 'Playfair Display', serif;
+        font-size: 2.1rem;
+        margin-bottom: 1.2rem;
+      }
+      .audit-followup p {
+        font-size: 1.15rem;
+        margin-bottom: 1.5rem;
+      }
+      .audit-followup h3 {
+        color: var(--primary-orange);
+        font-size: 1.15rem;
+        margin-bottom: 0.7rem;
+        font-weight: 700;
+      }
+      .audit-followup ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1.5rem 0;
+        text-align: left;
+        display: inline-block;
+      }
+      .audit-followup ul li {
+        position: relative;
+        padding-left: 2rem;
+        margin-bottom: 0.7rem;
+        font-size: 1.08rem;
+      }
+      .audit-followup ul li.check::before {
+        content: '✔';
+        color: var(--deep-blue);
+        position: absolute;
+        left: 0;
+        font-size: 1.1em;
+        top: 0.1em;
+      }
+      .audit-followup .btn {
+        font-size: 1.1rem;
+        padding: 0.9rem 2.2rem;
+        background: var(--primary-orange);
+        color: #fff;
+        border: none;
+        border-radius: 2.5rem;
+        font-weight: 700;
+        box-shadow: 0 2px 12px rgba(255,140,0,0.08);
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 1.2rem;
+      }
+      .audit-followup .btn:hover {
+        background: #e67c00;
+      }
+      @media (max-width: 900px) {
+        .audit-value {
+          flex-direction: column;
+        }
+      }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -25,6 +172,68 @@
             </ul>
         </div>
     </nav>
-    <!-- ...audit page content goes here... -->
+
+    <!-- Hero/Intro Section -->
+    <section class="audit-hero" data-aos="fade-up">
+      <h2>Is Your AI Strategy Built on Hope or a Blueprint?</h2>
+      <p>In just 90 seconds, discover where you truly stand. Most professionals approach AI with random tactics, leading to wasted time and mounting anxiety. This audit is the first step to replacing that uncertainty with a clear, actionable plan.</p>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section class="audit-value" data-aos="fade-up">
+      <div class="audit-value-card">
+        <!-- Person SVG -->
+        <svg fill="none" viewBox="0 0 32 32"><circle cx="16" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M4 28c0-5.523 5.373-10 12-10s12 4.477 12 10" stroke="currentColor" stroke-width="2"/></svg>
+        <h4>Discover Your Core AI Archetype</h4>
+        <p>Understand your default mode—whether you're a 'Curious Dabbler,' 'Overwhelmed Implementer,' or 'Skeptical Strategist.'</p>
+      </div>
+      <div class="audit-value-card">
+        <!-- Target SVG -->
+        <svg fill="none" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="7" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="currentColor"/></svg>
+        <h4>Pinpoint Your Primary Friction Point</h4>
+        <p>We'll identify the exact area—technical overwhelm, strategic uncertainty, or workflow chaos—costing you the most energy.</p>
+      </div>
+      <div class="audit-value-card">
+        <!-- Path/Signpost SVG -->
+        <svg fill="none" viewBox="0 0 32 32"><path d="M16 28V4" stroke="currentColor" stroke-width="2"/><path d="M16 4l7 7h-7V4zM16 28l-7-7h7v7z" fill="currentColor"/></svg>
+        <h4>Receive an Actionable Next Step</h4>
+        <p>You will leave this audit with one clear, data-driven recommendation for what to focus on next.</p>
+      </div>
+    </section>
+
+    <!-- Embedded Tool Section -->
+    <section class="audit-tool-section" data-aos="fade-up">
+      <h2>Begin Your 90-Second Audit</h2>
+      <div class="audit-tool-embed">
+        <!-- Replace the src below with your actual Vercel/Contentful app URL -->
+        <iframe src="https://your-vercel-app-url.com" title="AI Readiness Audit" width="100%" height="420" style="border:none; min-width:260px;" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- Follow-Up & CTA Section -->
+    <section class="audit-followup" data-aos="fade-up">
+      <h2>Your Audit is Complete. Let's Review Your Results.</h2>
+      <p>Thank you. The data from your audit provides a powerful starting point, but the real breakthrough comes from translating that data into a personalized strategy. The next step is to book your complimentary 30-minute AI Audit debrief session with me.</p>
+      <h3>In your free debrief, we will:</h3>
+      <ul>
+        <li class="check">Review your Audit results in detail.</li>
+        <li class="check">Co-design a 3-step action plan for your biggest friction point.</li>
+        <li class="check">Determine if a deeper engagement is the right fit.</li>
+      </ul>
+      <a href="https://schedule.samuelholley.com" class="btn">Book My Free Audit Debrief Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-main">
+                <span>Samuel Holley</span> &middot; <span>© 2025</span>
+                <span class="footer-links">
+                    <a href="https://www.linkedin.com/in/samuelholley/" target="_blank" rel="noopener">LinkedIn</a> |
+                    <a href="#" target="_blank" rel="noopener">Privacy Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
