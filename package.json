@@ -1,0 +1,15 @@
+{
+  "name": "sh-ai-landingpage",
+  "version": "1.0.0",
+  "scripts": {
+    "validate": "node scripts/validate-css.js",
+    "dev": "serve . -l 3001",
+    "test:e2e": "start-server-and-test dev 3001 'playwright test'"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.0",
+    "playwright": "^1.54.0",
+    "serve": "^14.2.4",
+    "start-server-and-test": "^2.0.12"
+  }
+}
