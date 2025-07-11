@@ -1,5 +1,11 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/1-home/" }
+  "version": 2,
+  "builds": [
+    { "src": "shared/assets/**", "use": "@vercel/static" },
+    { "src": "**/*.html",        "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/",               "dest": "/1-home/index.html" },
+    { "src": "/(.*)",           "dest": "/$1" }
   ]
 }
